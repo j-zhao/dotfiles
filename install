@@ -1,0 +1,33 @@
+#!/bin/bash
+
+pushd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+echo "Creating tmp directory"
+mkdir -p "tmp"
+
+install_from_github() {
+    # $1 is of the form: robbyrussell/oh-my-zsh
+    REPO=$(echo $1 | cut -d '/' -f 2)
+        echo "Cloning https://github.com/$1"
+        git clone  "https://github.com/$1.git" "./tmp/$REPO"
+}
+
+install_from_github "robbyrussell/oh-my-zsh"
+install_from_github "VundleVim/Vundle.vim"
+install_from_github "zsh-users/zsh-syntax-highlighting"
+
+. makelinks
+
+# Command Line Fuzzy Finder
+# install_from_github "junegunn/fzf"
+# fzf-master/install --bin
+
+# tmux Plugin Manager
+# mkdir -p "$HOME/.tmux/plugins"
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+ls
+echo "Deleting tmp dir"
+rm -rf ./tmp
+
+popd

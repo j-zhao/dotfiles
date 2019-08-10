@@ -1,0 +1,27 @@
+# Local environment-specific zsh configs
+# Mac
+
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias ll='ls -lg'
+
+export PATH="/usr/local/sbin:$PATH"
+export PATH=$BRAZIL_CLI_BIN:$PATH
+export PATH="/Users/jez/bin:$PATH"
+export PATH=/apollo/env/BarkCLI/bin:$PATH
+
+source ~/Library/Ruby/Gems/2.0.0/gems/tmuxinator-0.9.0/completion/tmuxinator.zsh
+
+# Amazon aliases
+alias bb='brazil-build'
+alias bbb='brazil-build build'
+alias bbs='brazil-build server'
+alias br='brazil'
+alias bbre='brazil-recursive-cmd --allPackages brazil-build'
+alias bbr='brazil-build-rainbow'
+alias bbrb='brazil-build-rainbow build'
+alias bbrs='brazil-build-rainbow server'
+alias bbrre='brazil-recursive-cmd --allPackages brazil-build-rainbow'
+alias bws='brazil ws'
+alias yubi='mwinit && ssh-add -D && ssh-add && ssh midway-verification.corp.amazon.com echo "-- MIDWAY IS WORKING TODAY --" && open "https://apollo.amazon.com" && open "https://midway.amazon.com"'
+
+export PATH=$HOME/.toolbox/bin:$PATH

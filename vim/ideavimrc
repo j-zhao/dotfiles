@@ -1,0 +1,16 @@
+set relativenumber number
+set linebreak
+set mouse=a
+
+syntax enable
+
+set tabstop=4 shiftwidth=4 expandtab
+set listchars=tab:>~,nbsp:_,trail:.,eol:$,extends:>,precedes:<
+set list
+set smarttab
+set smartindent
+set autoindent
+set guifont=Fira Code:h12
+set showcmd
+set clipboard+=unnamed
+

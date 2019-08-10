@@ -1,0 +1,29 @@
+#!/bin/bash
+
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES_TMP="$DOTFILES_DIR/tmp"
+
+symlink() {
+  rm -f $2
+  ln -sv $1 $2
+}
+
+# vim
+symlink "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
+mkdir -p "$HOME/.vim/bundle"
+symlink "$DOTFILES_TMP/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
+
+# zsh
+symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
+symlink "$DOTFILES_DIR/oh-my-zsh" "$HOME/.oh-my-zsh"
+mkdir -p "$HOME/.oh-my-zsh/custom/plugins"
+symlink "$DOTFILES_DIR/zsh-syntax-highlighting" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+mkdir -p "$HOME/.oh-my-zsh/custom/themes"
+
+# git
+# symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
+# symlink "$DOTFILES_DIR/.gitignore_global" "$HOME/.gitignore_global"
+
+# tmux
+mkdir -p "$HOME/.tmux/plugins"
+symlink "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"

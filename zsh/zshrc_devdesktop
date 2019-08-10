@@ -1,0 +1,53 @@
+# Local environment-specific zsh configs
+# Amazon DevDesktop Linux
+
+source /apollo/env/envImprovement/var/zshrc
+
+#Make copies here of variables that are used in the OH MY ZSH that need to be
+##replaced after
+ENV_ZSH=$ZSH
+ENV_HOME=$HOME
+ENV_ZSH_THEME=$ZSH_THEME
+
+export SSH_CLIENT=""
+#Load oh my zsh. You may add any lines you want here from the backed up zshrc of
+#the oh my zsh. Anything you would have added or uncommented there comes here.
+#The other alternative is to just source that file like so:
+#source .zshrc.oh-my-zsh-bckup
+HOME=/home/jez
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="fino"
+plugins=(git)
+DEFAULT_USER={{user/}}
+source $ZSH/oh-my-zsh.sh
+
+#restore environment variables
+ZSH=$ENV_ZSH
+HOME=$ENV_HOME
+ZSH_THEME=$ENV_ZSH_THEME
+
+alias java="/apollo/env/envImprovement/jdk1.8/bin/java"
+alias vim="~/Tools/vim/src/vim"
+
+# Amazon aliases
+alias bb='brazil-build'
+alias bbb='brazil-build build'
+alias bbs='brazil-build server'
+alias br='brazil'
+alias bws='brazil ws'
+alias bbre='brazil-recursive-cmd --allPackages brazil-build'
+alias bbr='brazil-build-rainbow'
+alias bbrb='brazil-build-rainbow build'
+alias bbrs='brazil-build-rainbow server'
+alias bbrre='brazil-recursive-cmd --allPackages brazil-build-rainbow'
+export PATH="/usr/local/sbin:$PATH"
+export PATH=$BRAZIL_CLI_BIN:$PATH
+export PATH=/apollo/env/BarkCLI/bin:$PATH
+alias klong="kinit -f -l 86400 -r 2592000"
+alias krenew="kinit -R"
+alias ssho="ssh -o ProxyCommand=none"
+alias devo-ssh='ssh -o '\''ProxyCommand none'\'
+
+printf "\e[?2004l""]"
+unset zle_bracketed_paste
+

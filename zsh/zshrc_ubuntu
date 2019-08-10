@@ -1,0 +1,5 @@
+# Local environment-specific zsh configs
+# Ubuntu Linux
+
+alias intellij='~/Tools/idea-IC-172.3757.52/bin/idea.sh'
+alias pms='sudo pm-suspend'
