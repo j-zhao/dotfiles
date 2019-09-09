@@ -57,6 +57,8 @@ Plugin 'scrooloose/nerdcommenter'
 "Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'fatih/vim-go'
+Plugin 'liuchengxu/vista.vim'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 if has('gui_running')
 endif
@@ -198,6 +200,7 @@ let g:go_fmt_options = "-tabs=false -tabwidth=4"
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeTabsToggle<CR>
+let NERDTreeShowHidden=1
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_synchronize_focus=1
@@ -212,8 +215,10 @@ let g:indent_guides_guide_size=1
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 "vim-go
 let g:go_fmt_command = "goimports"
@@ -245,7 +250,7 @@ set laststatus=2            " always statusbar
 "set statusline+=%l/%L\ %y   " curr line/total line [filetype]
 "set statusline+=%{fugitive#statusline()} " show current git branch with fugitive
 "set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%{ObsessionStatus('Obsessed','!Obsessed')}
 "set statusline+=%*
 
