@@ -37,8 +37,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'tpope/vim-sleuth'
 " Plugin 'tpope/vim-surround'
 
-Plugin 'valloric/YouCompleteMe'
-Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ciaranm/detectindent'
@@ -53,14 +51,17 @@ Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'solarnz/thrift.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'udalov/kotlin-vim'
+Plugin 'valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'xuyuanp/nerdtree-git-plugin'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -241,6 +242,10 @@ au Syntax * RainbowParenthesesLoadBraces
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>nt :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
+" enable line numbers
+let NERDTreeShowLineNumbers=1
+" make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
 " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 " Close NERDTree if last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
