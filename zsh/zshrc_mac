@@ -25,3 +25,7 @@ alias ll='ls -lg'
 # alias yubi='mwinit && ssh-add -D && ssh-add && ssh midway-verification.corp.amazon.com echo "-- MIDWAY IS WORKING TODAY --" && open "https://apollo.amazon.com" && open "https://midway.amazon.com"'
 # 
 # export PATH=$HOME/.toolbox/bin:$PATH
+
+# Uber Aliases
+
+export GOPATH=$HOME/go-code
