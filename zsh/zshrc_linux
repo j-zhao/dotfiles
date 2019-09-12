@@ -8,3 +8,4 @@ fi
 alias lockscreen="betterlockscreen --lock blur"
 
 export TERM='konsole-256color'
+alias ll='ls -lg'

@@ -185,7 +185,9 @@ else
     map <C-c> "+y
     map <C-v> "+p
     " set guifont=Menlo:h12
-    set macligatures
+    if has('macunix')
+        set macligatures
+    endif
     set guifont=Fira\ Code\ Retina:h12,Fira\ Code:h12
     set shell=/bin/zsh
 endif

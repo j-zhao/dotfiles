@@ -1,5 +1,7 @@
-#!/bin/bash
+#!/bin/zsh
 
+ENV=$1
+echo $ENV
 pushd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 echo "Creating tmp directory"
@@ -16,7 +18,7 @@ install_from_github "robbyrussell/oh-my-zsh"
 install_from_github "VundleVim/Vundle.vim"
 install_from_github "zsh-users/zsh-syntax-highlighting"
 
-. makelinks
+./makelinks
 
 # Command Line Fuzzy Finder
 # install_from_github "junegunn/fzf"

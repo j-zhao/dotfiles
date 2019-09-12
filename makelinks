@@ -1,29 +1,36 @@
-#!/bin/bash
+#!/bin/zsh
+
+echo "CREATING SYMLINKS"
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_TMP="$DOTFILES_DIR/tmp"
+HOMEDIR=$( getent passwd "$SUDO_USER" | cut -d: -f6 )
 
 symlink() {
-  rm -f $2
-  ln -sv $1 $2
+  rm -f $2 || true
+  ln -sv $1 $2 || true
+}
+
+tryMkdir() {
+  mkdir -p $1 || true
 }
 
 # vim
-symlink "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
-mkdir -p "$HOME/.vim/bundle"
-symlink "$DOTFILES_TMP/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
+symlink "$DOTFILES_DIR/vim/vimrc" "$HOMEDIR/.vimrc"
+# tryMkdir "$HOMEDIR/.vim/bundle"
+# symlink "$DOTFILES_TMP/Vundle.vim" "$HOMEDIR/.vim/bundle/Vundle.vim"
 
 # zsh
-symlink "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
-symlink "$DOTFILES_DIR/oh-my-zsh" "$HOME/.oh-my-zsh"
-mkdir -p "$HOME/.oh-my-zsh/custom/plugins"
-symlink "$DOTFILES_DIR/zsh-syntax-highlighting" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-mkdir -p "$HOME/.oh-my-zsh/custom/themes"
+symlink "$DOTFILES_DIR/zsh/zshrc" "$HOMEDIR/.zshrc"
+# symlink "$DOTFILES_DIR/oh-my-zsh" "$HOMEDIR/.oh-my-zsh"
+# tryMkdir "$HOMEDIR/.oh-my-zsh/custom/plugins"
+# symlink "$DOTFILES_DIR/zsh-syntax-highlighting" "$HOMEDIR/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+# tryMkdir "$HOMEDIR/.oh-my-zsh/custom/themes"
 
 # git
-# symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
-# symlink "$DOTFILES_DIR/.gitignore_global" "$HOME/.gitignore_global"
+# symlink "$DOTFILES_DIR/.gitconfig" "$HOMEDIR/.gitconfig"
+# symlink "$DOTFILES_DIR/.gitignore_global" "$HOMEDIR/.gitignore_global"
 
 # tmux
-mkdir -p "$HOME/.tmux/plugins"
-symlink "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"
+# tryMkdir "$HOMEDIR/.tmux/plugins"
+symlink "$DOTFILES_DIR/tmux.conf" "$HOMEDIR/.tmux.conf"
