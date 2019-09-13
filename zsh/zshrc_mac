@@ -29,3 +29,5 @@ alias ll='ls -lg'
 # Uber Aliases
 
 export GOPATH=$HOME/go-code
+eval "$(direnv hook zsh)"
+
