@@ -7,7 +7,7 @@
 """"""""""""""""""""""""""""""""
 "   Author: Jesse Zhao
 "   github.com/j-zhao
-"   Last Modified: 07-19-2019
+"   Last Modified: September 2019
 """"""""""""""""""""""""""""""""
 
 " vim-plug, and Plugins {{{
@@ -21,7 +21,6 @@ if has('unix')
     endif
 endif
 
-" vim-plug {{{
 
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
@@ -39,13 +38,13 @@ endif
 " Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'tpope/vim-obsession'
-" Plug 'tpope/vim-sleuth'
 " Plug 'tpope/vim-surround'
+" Plug 'ciaranm/detectindent'
+" Plug 'liuchengxu/vista.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bazelbuild/vim-bazel'
-Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dzeban/vim-log-syntax'
 Plug 'ervandew/supertab'
@@ -53,12 +52,15 @@ Plug 'fatih/vim-go'
 Plug 'google/vim-maktaba'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'liuchengxu/vista.vim'
+Plug 'majutsushi/tagbar'
 Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'solarnz/thrift.vim'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'udalov/kotlin-vim'
@@ -73,7 +75,6 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 " }}}
 
 call plug#end()
-" }}}
 
 " }}}
 
@@ -102,7 +103,7 @@ else
     set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
 endif
 set list
-set smarttab
+" set smarttab
 " set smartindent
 set autoindent
 set colorcolumn=121
@@ -281,8 +282,8 @@ let g:session_autosave='yes'
 set updatetime=250
 
 " DetectIndent
-let g:detectindent_preferred_indent = 4
-autocmd BufReadPost * :DetectIndent
+" let g:detectindent_preferred_indent = 4
+" autocmd BufReadPost * :DetectIndent
 
 " Cosmetics
 " Statusline
@@ -332,6 +333,12 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
+
+" Tagbar
+nmap <Leader>t :TagbarToggle<CR>
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
 " }}}
 
