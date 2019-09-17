@@ -21,11 +21,12 @@ if has('unix')
     endif
 endif
 
-
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-if has('win32')
+if has('nvim')
+    call plug#being('~/.local/share/nvim/plugged')
+elseif has('win32')
     call plug#begin('~/vimfiles/plugged')
 else
     call plug#begin('~/.vim/plugged')
@@ -41,6 +42,7 @@ endif
 " Plug 'tpope/vim-surround'
 " Plug 'ciaranm/detectindent'
 " Plug 'liuchengxu/vista.vim'
+" Plug 'valloric/YouCompleteMe'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
@@ -55,6 +57,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdcommenter'
@@ -64,13 +67,28 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'udalov/kotlin-vim'
-Plug 'valloric/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'xuyuanp/nerdtree-git-plugin'
+
+" Coc Plugins
+
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 
 " }}}
 
@@ -92,7 +110,11 @@ set linebreak
 set mouse=a
 set splitright
 set splitbelow
-" set softtabstop=4 shiftwidth=4 expandtab
+" set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
+" set smarttab
+" set smartindent
+set autoindent
+set tabstop=4
 " set showbreak=\\
 " set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
 if has('gui_running')
@@ -103,9 +125,6 @@ else
     set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
 endif
 set list
-" set smarttab
-" set smartindent
-set autoindent
 set colorcolumn=121
 set showcmd
 
@@ -160,6 +179,13 @@ if has('nvim')
 else
 endif
 
+" Clipboard/Copy Paste stuff
+
+set clipboard^=unnamed,unnamedplus
+imap <C-V> <C-R>+
+vmap <C-C> y
+cmap<C-V> <C-R>+
+
 if has('gui_running')
 endif
 
@@ -181,11 +207,11 @@ else
     set t_BE=
     cd ~/Projects
     set directory^=$HOME/.vim/swaps//
-    nmap <C-a> ggVG$
-    map <C-c> "+y
-    map <C-v> "+p
+    " nmap <C-a> ggVG$
+    " map <C-c> "+y
+    " map <C-v> "+p
     set guifont=Fira\ Code\ Retina:h12,Fira\ Code:h12
-    set shell=/bin/zsh
+    set shell=/bin/sh
     if s:uname == 'Darwin\n'
         " set guifont=Menlo:h12
         set macligatures
@@ -315,7 +341,16 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
 
 " vim-go
-" let g:go_autodetect_gopath = 0
+let g:go_autodetect_gopath = 0
+let $USE_SYSTEM_GO=1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+" Launch gopls when Go files are in use
+" let g:LanguageClient_serverCommands = {
+"        \ 'go': ['gopls']
+"        \ }
+" " Run gofmt on save
+" autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 let g:go_fmt_options = "-tabs=false -tabwidth=4"
 let g:go_fmt_command = "goimports"
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']

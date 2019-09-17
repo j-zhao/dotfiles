@@ -28,6 +28,8 @@ alias ll='ls -lg'
 
 # Uber Aliases
 
+export GOBIN=$GOPATH/bin
 export GOPATH=$HOME/go-code
 eval "$(direnv hook zsh)"
+source /usr/local/etc/bash_completion.d/bazel-complete.bash
 

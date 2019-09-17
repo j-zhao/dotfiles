@@ -4,6 +4,12 @@ My dot files, configurations, and general miscellaneous unix environment setting
 
 Credit to https://github.com/shadanan/dotfiles for install scripts.
 
+## Dependencies
+
+- `git`
+- `curl`
+- `ruby` (if you're installing `brew`)
+
 ## Installation
 
 - Make your default shell ZSH
