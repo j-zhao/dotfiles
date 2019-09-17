@@ -1,227 +1,198 @@
-" Modeline and Notes {{{
-" vim: set foldmethod=marker foldlevel=0 et :
-" }}}
-
-""""""""""""""""""""""""""""""""
-" README
-""""""""""""""""""""""""""""""""
-"   Author: Jesse Zhao
-"   github.com/j-zhao
-"   Last Modified: September 2019
-""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"     _    _____  _   _   ___  _ ___  __   _____ __  __ ___  ___
+"  _ | |__|_  / || | /_\ / _ \( ) __| \ \ / /_ _|  \/  | _ \/ __|
+" | || |___/ /| __ |/ _ \ (_) |/\__ \  \ V / | || |\/| |   / (__
+"  \__/   /___|_||_/_/ \_\___/  |___/   \_/ |___|_|  |_|_|_\\___|
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Author: Jesse Zhao
+" Repo: github.com/j-zhao/dotfiles
+" Last Modified: September 2019
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-plug, and Plugins {{{
+    " Initialize plugin system
+    " vim-plug init {{{
+        " checks to see if vim-plug is already installed, or install if not
+        if has('unix')
+            if empty(glob('~/.vim/autoload/plug.vim'))
+                silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+            endif
+        endif
 
-" checks to see if vim-plug is already installed, or install if not
-if has('unix')
-    if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
-endif
+        " Specify a directory for plugins
+        " - For Neovim: ~/.local/share/nvim/plugged
+        " - Avoid using standard Vim directory names like 'plugin'
+        if has('nvim')
+            call plug#being('~/.local/share/nvim/plugged')
+        elseif has('win32')
+            call plug#begin('~/vimfiles/plugged')
+        else
+            call plug#begin('~/.vim/plugged')
+        endif
+    " }}} /vim-plug init
 
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-if has('nvim')
-    call plug#being('~/.local/share/nvim/plugged')
-elseif has('win32')
-    call plug#begin('~/vimfiles/plugged')
-else
-    call plug#begin('~/.vim/plugged')
-endif
+    " Plugins {{{
 
-" Initialize plugin system
+        " Plug 'jistr/vim-nerdtree-tabs'
+        " Plug 'leafgarland/typescript-vim'
+        " Plug 'tpope/vim-obsession'
+        " Plug 'tpope/vim-surround'
+        " Plug 'ciaranm/detectindent'
+        " Plug 'liuchengxu/vista.vim'
+        " Plug 'valloric/YouCompleteMe'
+        " Plug 'ervandew/supertab'
 
-" Plugins {{{
+        Plug 'airblade/vim-gitgutter'
+        Plug 'altercation/vim-colors-solarized'
+        Plug 'bazelbuild/vim-bazel'
+        Plug 'ctrlpvim/ctrlp.vim'
+        Plug 'dzeban/vim-log-syntax'
+        Plug 'fatih/vim-go'
+        Plug 'google/vim-maktaba'
+        Plug 'jeffkreeftmeijer/vim-numbertoggle'
+        Plug 'kien/rainbow_parentheses.vim'
+        Plug 'majutsushi/tagbar'
+        Plug 'mtscout6/syntastic-local-eslint.vim'
+        Plug 'nathanaelkane/vim-indent-guides'
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        Plug 'pangloss/vim-javascript'
+        Plug 'plasticboy/vim-markdown'
+        Plug 'scrooloose/nerdcommenter'
+        Plug 'scrooloose/nerdtree'
+        Plug 'solarnz/thrift.vim'
+        Plug 'tpope/vim-sleuth'
+        Plug 'tpope/vim-fugitive'
+        Plug 'tpope/vim-sensible'
+        Plug 'udalov/kotlin-vim'
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
+        Plug 'vim-syntastic/syntastic'
+        Plug 'xolox/vim-misc'
+        Plug 'xolox/vim-session'
+        Plug 'xuyuanp/nerdtree-git-plugin'
 
-" Plug 'jistr/vim-nerdtree-tabs'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'tpope/vim-obsession'
-" Plug 'tpope/vim-surround'
-" Plug 'ciaranm/detectindent'
-" Plug 'liuchengxu/vista.vim'
-" Plug 'valloric/YouCompleteMe'
-" Plug 'ervandew/supertab'
+    " }}} /Plugins
 
-Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
-Plug 'bazelbuild/vim-bazel'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dzeban/vim-log-syntax'
-Plug 'fatih/vim-go'
-Plug 'google/vim-maktaba'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'majutsushi/tagbar'
-Plug 'mtscout6/syntastic-local-eslint.vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'solarnz/thrift.vim'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
-Plug 'udalov/kotlin-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-syntastic/syntastic'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-Plug 'xuyuanp/nerdtree-git-plugin'
+    " Coc Plugins {{{
 
-" Coc Plugins
+        Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+    " }}} /Coc Plugins
 
-" }}}
-
-call plug#end()
-
-" }}}
-
+    call plug#end()
+" }}} /vim-plug, and Plugins
 " Vim Customization {{{
-
-"source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-scriptencoding utf-8
-set lazyredraw
-" set showmode
-set encoding=utf-8
-set number relativenumber
-set linebreak
-set mouse=a
-set splitright
-set splitbelow
-" set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
-" set smarttab
-" set smartindent
-set autoindent
-set tabstop=4
-" set showbreak=\\
-" set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
-if has('gui_running')
-    set showbreak=↪\
-    " set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-    set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-else
-    set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
-endif
-set list
-set colorcolumn=121
-set showcmd
-
-"syntax enable
-syntax on
-set background=dark
-colorscheme solarized
-
-" }}}
-
+    "source $VIMRUNTIME/vimrc_example.vim
+    "source $VIMRUNTIME/mswin.vim
+    scriptencoding utf-8
+    set lazyredraw
+    " set showmode
+    set encoding=utf-8
+    set number relativenumber
+    set linebreak
+    set mouse=a
+    set splitright
+    set splitbelow
+    " Handled 
+    " set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
+    " set smarttab
+    " set smartindent
+    set autoindent
+    set tabstop=4
+    " set showbreak=\\
+    " set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
+    if has('gui_running')
+        set showbreak=↪\
+        " set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+        set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+    else
+        set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
+    endif
+    set list
+    set colorcolumn=121
+    set showcmd
+    if !exists("g:syntax_on")
+        syntax enable
+    endif
+    set background=dark
+    colorscheme solarized
+" }}} /Vim Customization
 " Functions and AutoCommands {{{
 
-" Autostart Obsession
-"autocmd VimEnter * call AutoSourceObsession()
-"    autocmd VimEnter * call VimSessionAutoStart()
+    augroup reload_vimrc
+        autocmd!
+        autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    augroup END
 
-augroup reload_vimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
+    function! OpenVimrcs()
+        tabnew $MYVIMRC
+    endfunction
 
-"    function! VimSessionAutoStart()
-"        OpenSession
-"        SaveSession
-"    endfunction
+" }}} /Functions and AutoCommands
+" Environment Configs {{{
 
-"    function! AutoSourceObsession()
-"        if !argc() && empty(v:this_session) && filereadable('~/.vim/Obsession.vim') && !&modified
-"            source ~/.vim/Obsession.vim
-"            Obsession ~/Obsession.vim
-"        else
-"            Obsession ~/Obsession.vim
-"        endif
-"    endfunction
+    if has('nvim')
+        set rtp+=/usr/share/vim/vim74
+    else
+    endif
 
-function! OpenVimrcs()
-    tabnew $MYVIMRC
-    " if has ('unix')
-    "     vnew ~/Dropbox/Programming/Vim/.vimrc
-    "     vnew ~/Dropbox/Programming/Vim/_vimrc
-    " elseif has ('win32')
-    "     vnew D:/Dropbox/Programming/Vim/_vimrc
-    "     vnew D:/Dropbox/Programming/Vim/.vimrc
-    " endif
-endfunction
-" }}}
+  " Clipboard/Copy Paste stuff
 
-" Environment Configs and Startup {{{
+    set clipboard^=unnamed,unnamedplus
+    imap <C-V> <C-R>+
+    vmap <C-C> y
+    cmap<C-V> <C-R>+
 
-if has('nvim')
-    set rtp+=/usr/share/vim/vim74
-else
-endif
+    if has('gui_running')
+    endif
 
-" Clipboard/Copy Paste stuff
-
-set clipboard^=unnamed,unnamedplus
-imap <C-V> <C-R>+
-vmap <C-C> y
-cmap<C-V> <C-R>+
-
-if has('gui_running')
-endif
-
-if has('win32')
-    " Startup directory
-    cd D:\Projects
-    set enc=utf-8
-    behave mswin
-    set directory^=$HOME/swaps
+    if has('win32')
+        " Startup directory
+        cd D:\Projects
+        set enc=utf-8
+        behave mswin
+        set directory^=$HOME/swaps
     " DirectX
     if !has('nvim')
         set renderoptions=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
     endif
-    " set guifont=Consolas:h11
-    set guifont=Fira\ Code:h11,Consolas:h11
-else
-    let s:uname = system('uname')
-    " Startup directory
-    set t_BE=
-    cd ~/Projects
-    set directory^=$HOME/.vim/swaps//
-    " nmap <C-a> ggVG$
-    " map <C-c> "+y
-    " map <C-v> "+p
-    set guifont=Fira\ Code\ Retina:h12,Fira\ Code:h12
-    set shell=/bin/sh
-    if s:uname == 'Darwin\n'
-        " set guifont=Menlo:h12
-        set macligatures
+        " set guifont=Consolas:h11
+        set guifont=Fira\ Code:h11,Consolas:h11
+    else
+        let s:uname = system('uname')
+        " Startup directory
+        set t_BE=
+        cd ~/Projects
+        set directory^=$HOME/.vim/swaps//
+        " nmap <C-a> ggVG$
+        " map <C-c> "+y
+        " map <C-v> "+p
+        set guifont=Fira\ Code\ Retina:h12,Fira\ Code:h12
+        set shell=/bin/sh
+        if s:uname == 'Darwin\n'
+            " set guifont=Menlo:h12
+            set macligatures
+        endif
     endif
-endif
 
-set t_Co=256
+    set t_Co=256
 
-" Startup
-" }}}
-
+" }}} / Environment Configs
 " Mappings {{{
 
 " Closes braces automatically
@@ -249,7 +220,6 @@ map <F2> :SaveSession
 map <F3> :OpenSession
 map <F4> :call OpenVimrcs()
 " }}}
-
 " Plugin Settings and Cosmetics {{{
 
 " Rainbow Parens Always on
@@ -509,152 +479,156 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " }}} /Coc.nvim
 
 " }}} /Plugin Settings and Cosmestics
-
 " Developer Settings {{{
 
-set autowrite
+    set autowrite
 
-" Smooth Scrolling
-" function SmoothScroll(up)
-"     if a:up
-"         let scrollaction="\"
-"     else
-"         let scrollaction="\"
-"     endif
-"     exec "norm " . scrollaction
-"     redraw
-"     let counter=1
-"     while counter<&scroll
-"         let counter+=1
-"         sleep 10m
-"         redraw
-"         exec "norm " . scrollaction
-"     endwhile
-" endfunction
-" nnoremap  :call SmoothScroll(1)
-" nnoremap  :call SmoothScroll(0)
-" inoremap  :call SmoothScroll(1)i
-" inoremap  :call SmoothScroll(0)i
+    " Smooth Scrolling
+    " function SmoothScroll(up)
+    "     if a:up
+    "         let scrollaction="\"
+    "     else
+    "         let scrollaction="\"
+    "     endif
+    "     exec "norm " . scrollaction
+    "     redraw
+    "     let counter=1
+    "     while counter<&scroll
+    "         let counter+=1
+    "         sleep 10m
+    "         redraw
+    "         exec "norm " . scrollaction
+    "     endwhile
+    " endfunction
+    " nnoremap  :call SmoothScroll(1)
+    " nnoremap  :call SmoothScroll(0)
+    " inoremap  :call SmoothScroll(1)i
+    " inoremap  :call SmoothScroll(0)i
 
-set errorformat=%A:%f:%l:\ %m,%-Z%p^,%-C%.%#
+    set errorformat=%A:%f:%l:\ %m,%-Z%p^,%-C%.%#
 
-" If two files are loaded, switch to the alternate file, then back.
-" That sets # (the alternate file).
-if argc() == 2
-    n
-    e #
-endif
-" }}}
-
-" Cosmetic Stuff {{{
-
-" Syntax Highlighting {{{
-
-autocmd BufNewFile,BufRead *.ion  set syntax=java
-" }}}
-"Highlight over 80 characters
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%81v.\+/
-
-" if persistent_undo, configure a directory for it
-if has("persistent_undo")
-    set undodir=$HOME/.undodir/
-    set undofile
-endif
-
-" always show tabline (2) or only show when multiple (1)
-" Show tab numbers
-set showtabline=2
-" always show tabs in gvim, but not vim
-" set up tab labels with tab number, buffer name, number of windows
-function! GuiTabLabel()
-    let label = ''
-    let bufnrlist = tabpagebuflist(v:lnum)
-    " Add '+' if one of the buffers in the tab page is modified
-    for bufnr in bufnrlist
-        if getbufvar(bufnr, "&modified")
-            let label = '+'
-            break
-        endif
-    endfor
-    " Append the tab number
-    let label .= v:lnum.': '
-    " Append the buffer name
-    let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
-    if name == ''
-        " give a name to no-name documents
-        if &buftype=='quickfix'
-            let name = '[Quickfix List]'
-        else
-            let name = '[No Name]'
-        endif
-    else
-        " get only the file name
-        let name = fnamemodify(name,":t")
+    " If two files are loaded, switch to the alternate file, then back.
+    " That sets # (the alternate file).
+    if argc() == 2
+        n
+        e #
     endif
-    let label .= name
-    " Append the number of windows in the tab page
-    let wincount = tabpagewinnr(v:lnum, '$')
-    return label . '  [' . wincount . ']'
-endfunction
-set guitablabel=%{GuiTabLabel()}
 
-" Tooltip to show multiple windows in a tab
-" set up tab tooltips with every buffer name
-function! GuiTabToolTip()
-    let tip = ''
-    let bufnrlist = tabpagebuflist(v:lnum)
-    for bufnr in bufnrlist
-        " separate buffer entries
-        if tip!=''
-            let tip .= " \n "
-        endif
-        " Add name of buffer
-        let name=bufname(bufnr)
+" }}} /Developer Settings
+" Cosmetic {{{
+
+    " Syntax Highlighting {{{
+
+        " autocmd BufNewFile,BufRead *.ion  set syntax=java
+    " }}} /Syntax Highlighting
+
+    "Highlight over 80 characters
+    "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    "match OverLength /\%81v.\+/
+
+    " if persistent_undo, configure a directory for it
+    if has("persistent_undo")
+        set undodir=$HOME/.undodir/
+        set undofile
+    endif
+
+    " always show tabline (2) or only show when multiple (1)
+    " Show tab numbers
+    set showtabline=2
+    " always show tabs in gvim, but not vim
+    " set up tab labels with tab number, buffer name, number of windows
+    function! GuiTabLabel()
+        let label = ''
+        let bufnrlist = tabpagebuflist(v:lnum)
+        " Add '+' if one of the buffers in the tab page is modified
+        for bufnr in bufnrlist
+            if getbufvar(bufnr, "&modified")
+                let label = '+'
+                break
+            endif
+        endfor
+        " Append the tab number
+        let label .= v:lnum.': '
+        " Append the buffer name
+        let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
         if name == ''
-            " give a name to no name documents
-            if getbufvar(bufnr,'&buftype')=='quickfix'
+            " give a name to no-name documents
+            if &buftype=='quickfix'
                 let name = '[Quickfix List]'
             else
                 let name = '[No Name]'
             endif
-        endif
-        let tip.=name
-        " add modified/modifiable flags
-        if getbufvar(bufnr, "&modified")
-            let tip .= ' [+]'
-        endif
-        if getbufvar(bufnr, "&modifiable")==0
-            let tip .= ' [-]'
-        endif
-    endfor
-    return tip
-endfunction
-set guitabtooltip=%{GuiTabToolTip()}
-
-set diffexpr=MyDiff()
-function! MyDiff()
-    let opt = '-a --binary '
-    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-    let arg1 = v:fname_in
-    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-    let arg2 = v:fname_new
-    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-    let arg3 = v:fname_out
-    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-    let eq = ''
-    if $VIMRUNTIME =~ ' '
-        if &sh =~ '\<cmd'
-            let cmd = '""' . $VIMRUNTIME . '\diff"'
-            let eq = '"'
         else
-            let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+            " get only the file name
+            let name = fnamemodify(name,":t")
         endif
-    else
-        let cmd = $VIMRUNTIME . '\diff'
-    endif
-    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+        let label .= name
+        " Append the number of windows in the tab page
+        let wincount = tabpagewinnr(v:lnum, '$')
+        return label . '  [' . wincount . ']'
+    endfunction
+    set guitablabel=%{GuiTabLabel()}
+
+    " Tooltip to show multiple windows in a tab
+    " set up tab tooltips with every buffer name
+    function! GuiTabToolTip()
+        let tip = ''
+        let bufnrlist = tabpagebuflist(v:lnum)
+        for bufnr in bufnrlist
+            " separate buffer entries
+            if tip!=''
+                let tip .= " \n "
+            endif
+            " Add name of buffer
+            let name=bufname(bufnr)
+            if name == ''
+                " give a name to no name documents
+                if getbufvar(bufnr,'&buftype')=='quickfix'
+                    let name = '[Quickfix List]'
+                else
+                    let name = '[No Name]'
+                endif
+            endif
+            let tip.=name
+            " add modified/modifiable flags
+            if getbufvar(bufnr, "&modified")
+                let tip .= ' [+]'
+            endif
+            if getbufvar(bufnr, "&modifiable")==0
+                let tip .= ' [-]'
+            endif
+        endfor
+        return tip
+    endfunction
+    set guitabtooltip=%{GuiTabToolTip()}
+
+    set diffexpr=MyDiff()
+    function! MyDiff()
+        let opt = '-a --binary '
+        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        let arg1 = v:fname_in
+        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        let arg2 = v:fname_new
+        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        let arg3 = v:fname_out
+        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        let eq = ''
+        if $VIMRUNTIME =~ ' '
+            if &sh =~ '\<cmd'
+                let cmd = '""' . $VIMRUNTIME . '\diff"'
+                let eq = '"'
+            else
+                let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+            endif
+        else
+            let cmd = $VIMRUNTIME . '\diff'
+        endif
+        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+
+" }}} /Cosmetic
+" Modeline and Notes {{{
+    " vim: set foldmethod=marker foldlevel=0 et :
 " }}}
 
