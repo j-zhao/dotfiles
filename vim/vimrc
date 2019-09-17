@@ -38,62 +38,62 @@
 
   " Plugins {{{
 
-  " Plug 'jistr/vim-nerdtree-tabs'
-  " Plug 'leafgarland/typescript-vim'
-  " Plug 'tpope/vim-obsession'
-  " Plug 'tpope/vim-surround'
-  " Plug 'ciaranm/detectindent'
-  " Plug 'liuchengxu/vista.vim'
-  " Plug 'valloric/YouCompleteMe'
-  " Plug 'ervandew/supertab'
-  " Plug 'vim-syntastic/syntastic'
+    " Plug 'jistr/vim-nerdtree-tabs'
+    " Plug 'leafgarland/typescript-vim'
+    " Plug 'tpope/vim-obsession'
+    " Plug 'tpope/vim-surround'
+    " Plug 'ciaranm/detectindent'
+    " Plug 'liuchengxu/vista.vim'
+    " Plug 'valloric/YouCompleteMe'
+    " Plug 'ervandew/supertab'
+    " Plug 'vim-syntastic/syntastic'
 
-  Plug 'airblade/vim-gitgutter'
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'bazelbuild/vim-bazel'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'dzeban/vim-log-syntax'
-  Plug 'fatih/vim-go'
-  Plug 'google/vim-maktaba'
-  Plug 'jeffkreeftmeijer/vim-numbertoggle'
-  Plug 'kien/rainbow_parentheses.vim'
-  Plug 'majutsushi/tagbar'
-  Plug 'mtscout6/syntastic-local-eslint.vim'
-  Plug 'nathanaelkane/vim-indent-guides'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'pangloss/vim-javascript'
-  Plug 'plasticboy/vim-markdown'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'scrooloose/nerdtree'
-  Plug 'solarnz/thrift.vim'
-  Plug 'tpope/vim-sleuth'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-sensible'
-  Plug 'udalov/kotlin-vim'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'dense-analysis/ale'
-  Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-session'
-  Plug 'xuyuanp/nerdtree-git-plugin'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'bazelbuild/vim-bazel'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'dzeban/vim-log-syntax'
+    Plug 'fatih/vim-go'
+    Plug 'google/vim-maktaba'
+    Plug 'jeffkreeftmeijer/vim-numbertoggle'
+    Plug 'kien/rainbow_parentheses.vim'
+    Plug 'majutsushi/tagbar'
+    Plug 'mtscout6/syntastic-local-eslint.vim'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'pangloss/vim-javascript'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdtree'
+    Plug 'solarnz/thrift.vim'
+    Plug 'tpope/vim-sleuth'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-sensible'
+    Plug 'udalov/kotlin-vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'dense-analysis/ale'
+    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-session'
+    Plug 'xuyuanp/nerdtree-git-plugin'
 
-  " Coc Plugins {{{
+    " Coc Plugins {{{
 
-  Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
+      Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 
-  " }}} /Coc Plugins
+    " }}} /Coc Plugins
 
   " }}} /Plugins
 
@@ -234,127 +234,142 @@
 
 " Plugin Settings and Cosmetics {{{
 
-  " Rainbow Parens Always on
-  au VimEnter * RainbowParenthesesToggle
-  au Syntax * RainbowParenthesesLoadRound
-  au Syntax * RainbowParenthesesLoadSquare
-  au Syntax * RainbowParenthesesLoadBraces
+  " Rainbow Parens {{{
+    " Rainbow Parens Always on
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+  " }}}
 
-  " NERDTree/NERDTreeTabs
-  "autocmd StdinReadPre * let s:std_in=1
-  "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  " map <C-n> :NERDTreeTabsToggle<CR>
-  " map <C-n> :NERDTreeToggle<CR>
-  map <C-n> :NERDTreeToggle<CR>
-  map <Leader>nt :NERDTreeToggle<CR>
-  map <Leader>nf :NERDTreeFind<CR>
-  " enable line numbers
-  let NERDTreeShowLineNumbers=1
-  " make sure relative line numbers are used
-  autocmd FileType nerdtree setlocal relativenumber
-  " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
-  " Close NERDTree if last buffer
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-  let NERDTreeShowHidden=1
-  let NERDTreeShowBookmarks=1
-  let g:NERDTreeShowGitStatus = 1
-  " let g:nerdtree_tabs_open_on_console_startup=0
-  " let g:nerdtree_tabs_open_on_gui_startup=0
-  " let g:nerdtree_tabs_synchronize_focus=1
-  " let g:nerdtree_tabs_focus_on_files=1
-  " let g:nerdtree_tabs_autofind=1
-  " let g:nerdtree_tabs_synchronize_view=0
+  " NERDTree/NERDTreeTabs {{{
+    "autocmd StdinReadPre * let s:std_in=1
+    "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    " map <C-n> :NERDTreeTabsToggle<CR>
+    " map <C-n> :NERDTreeToggle<CR>
+    map <C-n> :NERDTreeToggle<CR>
+    map <Leader>nt :NERDTreeToggle<CR>
+    map <Leader>nf :NERDTreeFind<CR>
+    " enable line numbers
+    let NERDTreeShowLineNumbers=1
+    " make sure relative line numbers are used
+    autocmd FileType nerdtree setlocal relativenumber
+    " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
+    " Close NERDTree if last buffer
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    let NERDTreeShowHidden=1
+    let NERDTreeShowBookmarks=1
+    let g:NERDTreeShowGitStatus = 1
+    " let g:nerdtree_tabs_open_on_console_startup=0
+    " let g:nerdtree_tabs_open_on_gui_startup=0
+    " let g:nerdtree_tabs_synchronize_focus=1
+    " let g:nerdtree_tabs_focus_on_files=1
+    " let g:nerdtree_tabs_autofind=1
+    " let g:nerdtree_tabs_synchronize_view=0
+  " }}}
 
-  " Indent Guides
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_guide_size=1
+  " Indent Guides {{{
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_guide_size=1
+  " }}}
 
-  " Syntastic
-  " let g:syntastic_always_populate_loc_list = 1
-  " let g:syntastic_auto_loc_list = 1
-  " let g:syntastic_check_on_open = 1
-  " let g:syntastic_check_on_wq = 0
-  " let g:syntastic_javascript_checkers = ['eslint']
-  " let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+  " Syntastic {{{
+    " let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
+    " let g:syntastic_check_on_open = 1
+    " let g:syntastic_check_on_wq = 0
+    " let g:syntastic_javascript_checkers = ['eslint']
+    " let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+  " }}}
 
-  " Solarized
-  let g:solarized_termtrans=1
-  "    let g:solarized_termcolors=256
-  "    let g:solarized_contrast='high'
+  " Solarized {{{
+    let g:solarized_termtrans=1
+    "    let g:solarized_termcolors=256
+    "    let g:solarized_contrast='high'
+  " }}}
 
-  " Vim-Session
-  let g:session_autosave='yes'
+  " Vim-Session {{{
+    let g:session_autosave='yes'
+  " }}}
 
-  " GitGutter
-  set updatetime=250
+  " GitGutter {{{
+    set updatetime=250
+  " }}}
 
-  " DetectIndent
-  " let g:detectindent_preferred_indent = 4
-  " autocmd BufReadPost * :DetectIndent
+  " DetectIndent {{{
+    " let g:detectindent_preferred_indent = 4
+    " autocmd BufReadPost * :DetectIndent
+  " }}}
 
-  " Cosmetics
-  " Statusline
-  set laststatus=2            " always statusbar
-  " set statusline=%{getcwd()}: " pwd of vim
-  " set statusline+=\ %f%m%=    " relative path to filename, modified flag, RHS
-  " set statusline+=%c,         " char number
-  " set statusline+=%l/%L\ %y   " curr line/total line [filetype]
-  " set statusline+=%{fugitive#statusline()} " show current git branch with fugitive
-  " set statusline+=%#warningmsg#
-  " set statusline+=%{SyntasticStatuslineFlag()}
-  " set statusline+=%{ObsessionStatus('Obsessed','!Obsessed')}
-  " set statusline+=%*
+  " Statusline {{{
+    set laststatus=2            " always statusbar
+    " set statusline=%{getcwd()}: " pwd of vim
+    " set statusline+=\ %f%m%=    " relative path to filename, modified flag, RHS
+    " set statusline+=%c,         " char number
+    " set statusline+=%l/%L\ %y   " curr line/total line [filetype]
+    " set statusline+=%{fugitive#statusline()} " show current git branch with fugitive
+    " set statusline+=%#warningmsg#
+    " set statusline+=%{SyntasticStatuslineFlag()}
+    " set statusline+=%{ObsessionStatus('Obsessed','!Obsessed')}
+    " set statusline+=%*
+  " }}}
 
-  " Airline
-  let g:airline_detect_modified=1
+  " Airline {{{
+    let g:airline_detect_modified=1
+  " }}}
 
-  " Airline Theme
-  let g:airline_solarized_bg='dark'
-  let g:airline_powerline_fonts = 1
-  " let g:airline#extensions#tabline#enabled = 1
-  " let g:airline#extensions#tabline#left_sep = ' '
-  " let g:airline#extensions#tabline#left_alt_sep = '|'
+  " Airline Theme {{{
+    let g:airline_solarized_bg='dark'
+    let g:airline_powerline_fonts = 1
+    " let g:airline#extensions#tabline#enabled = 1
+    " let g:airline#extensions#tabline#left_sep = ' '
+    " let g:airline#extensions#tabline#left_alt_sep = '|'
+  " }}}
 
-  " NERDCommenter
-  let g:NERDCompactSexyComs = 1
-  let g:NERDCommentEmptyLines = 1
-  let g:NERDDefaultAlign = 'left'
-  let g:NERDSpaceDelims = 1
+  " NERDCommenter {{{
+    let g:NERDCompactSexyComs = 1
+    let g:NERDCommentEmptyLines = 1
+    let g:NERDDefaultAlign = 'left'
+    let g:NERDSpaceDelims = 1
+  " }}}
 
-  " vim-go
-  let g:go_autodetect_gopath = 0
-  let $USE_SYSTEM_GO=1
-  let g:go_def_mode='gopls'
-  let g:go_info_mode='gopls'
-  " Launch gopls when Go files are in use
-  " let g:LanguageClient_serverCommands = {
-  "        \ 'go': ['gopls']
-  "        \ }
-  " " Run gofmt on save
-  " autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
-  let g:go_fmt_options = "-tabs=false -tabwidth=4"
-  let g:go_fmt_command = "goimports"
-  let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-  let g:go_metalinter_autosave = 1
-  let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-  let g:go_metalinter_deadline = "5s"
-  let g:go_test_show_name = 1
-  let g:go_auto_type_info = 1
-  " highlights
-  let g:go_highlight_types = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_functions = 1
-  let g:go_highlight_function_calls = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_extra_types = 1
-  let g:go_highlight_build_constraints = 1
-  let g:go_highlight_generate_tags = 1
+  " vim-go {{{
+    let g:go_autodetect_gopath = 0
+    let $USE_SYSTEM_GO=1
+    let g:go_def_mode='gopls'
+    let g:go_info_mode='gopls'
+    " Launch gopls when Go files are in use
+    " let g:LanguageClient_serverCommands = {
+    "        \ 'go': ['gopls']
+    "        \ }
+    " " Run gofmt on save
+    " autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+    let g:go_fmt_options = "-tabs=false -tabwidth=4"
+    let g:go_fmt_command = "goimports"
+    let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+    let g:go_metalinter_autosave = 1
+    let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+    let g:go_metalinter_deadline = "5s"
+    let g:go_test_show_name = 1
+    let g:go_auto_type_info = 1
+    " highlights
+    let g:go_highlight_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_generate_tags = 1
+  " }}}
 
-  " Tagbar
-  nmap <Leader>t :TagbarToggle<CR>
+  " Tagbar {{{
+    nmap <Leader>t :TagbarToggle<CR>
+  " }}}
 
-  " vim-markdown
-  let g:vim_markdown_folding_disabled = 1
+  " vim-markdown {{{
+    let g:vim_markdown_folding_disabled = 1
+  " }}}
 
   " Coc.nvim {{{
     " if hidden is not set, TextEdit might fail.
@@ -490,6 +505,12 @@
 
   " }}} /Coc.nvim
 
+  " ale {{{
+    let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+    " Set this variable to 1 to fix files when you save them.
+    let g:ale_fix_on_save = 1
+  " }}}
+
 " }}} /Plugin Settings and Cosmestics
 
 " Developer Settings {{{
@@ -529,7 +550,7 @@
 
 " }}} /Developer Settings
 
-" Cosmetic {{{
+" Cosmetics {{{
 
   " Syntax Highlighting {{{
     " autocmd BufNewFile,BufRead *.ion  set syntax=java
