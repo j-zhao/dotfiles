@@ -79,19 +79,19 @@
 
     " Coc Plugins {{{
 
-      Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'fannheyward/coc-xml', {'do': 'yarn install --frozen-lockfile'}
-      Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+      " Plug 'neoclide/coc-json', {'do': 'npm i'}
+      " Plug 'neoclide/coc-tsserver', {'do': 'npm i'}
+      " Plug 'neoclide/coc-css', {'do': 'npm i'}
+      " Plug 'neoclide/coc-java', {'do': 'npm i'}
+      " Plug 'neoclide/coc-yaml', {'do': 'npm i'}
+      " Plug 'neoclide/coc-python', {'do': 'npm i'}
+      " Plug 'neoclide/coc-highlight', {'do': 'npm i'}
+      " Plug 'neoclide/coc-lists', {'do': 'npm i'}
+      " Plug 'neoclide/coc-git', {'do': 'npm i'}
+      " Plug 'neoclide/coc-yank', {'do': 'npm i'}
+      " Plug 'iamcco/coc-vimlsp', {'do': 'npm i'}
+      " Plug 'fannheyward/coc-xml', {'do': 'npm i'}
+      " Plug 'neoclide/coc-eslint', {'do': 'npm i'}
 
     " }}} /Coc Plugins
 
@@ -372,6 +372,7 @@
   " }}}
 
   " Coc.nvim {{{
+    let g:coc_global_extensions=['coc-java','coc-vimlsp','coc-python','coc-eslint','coc-tsserver','coc-git','coc-json','coc-yaml','coc-highlight','coc-xml']
     " if hidden is not set, TextEdit might fail.
     set hidden
 
