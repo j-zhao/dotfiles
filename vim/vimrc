@@ -47,15 +47,19 @@
     " Plug 'valloric/YouCompleteMe'
     " Plug 'ervandew/supertab'
     " Plug 'vim-syntastic/syntastic'
+    " Plug 'dense-analysis/ale'
+    " Plug 'itchyny/lightline.vim'
 
     Plug 'airblade/vim-gitgutter'
     Plug 'altercation/vim-colors-solarized'
     Plug 'bazelbuild/vim-bazel'
+    Plug 'bling/vim-bufferline'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dzeban/vim-log-syntax'
     Plug 'fatih/vim-go'
     Plug 'google/vim-maktaba'
     Plug 'jeffkreeftmeijer/vim-numbertoggle'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'kien/rainbow_parentheses.vim'
     Plug 'majutsushi/tagbar'
     Plug 'mtscout6/syntastic-local-eslint.vim'
@@ -72,7 +76,6 @@
     Plug 'udalov/kotlin-vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'dense-analysis/ale'
     Plug 'xolox/vim-misc'
     Plug 'xolox/vim-session'
     Plug 'xuyuanp/nerdtree-git-plugin'
@@ -107,6 +110,7 @@
   "source $VIMRUNTIME/mswin.vim
   scriptencoding utf-8
   set lazyredraw
+  set smartcase ignorecase
   " set showmode
   set encoding=utf-8
   set number relativenumber
@@ -168,6 +172,9 @@
   cmap<C-V> <C-R>+
 
   if has('gui_running')
+    set guioptions=0
+  else
+    set t_Co=256
   endif
 
   if has('win32')
@@ -199,26 +206,24 @@
     endif
   endif
 
-  set t_Co=256
-
 " }}} / Environment Configs
 
 " Mappings {{{
 
   " Closes braces automatically
-  inoremap (  ()<Left>
-  inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-  inoremap [  []<Left>
-  inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
-  inoremap <  <><Left>
-  inoremap <expr> >  strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
-  inoremap {  {}<Left>
-  inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
-  inoremap <expr> <CR> strpart(getline('.'), col('.')-1, 1) == '}' ? '<CR><CR><Up><Tab>' : '<CR>'
-  "    inoremap '  ''<Left>
-  "    inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == '\'' ? '\<Right>' : '\'\'\<Left>'
-  inoremap "  ""<Left>
-  inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
+  " inoremap (  ()<Left>
+  " inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+  " inoremap [  []<Left>
+  " inoremap <expr> ]  strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+  " inoremap <  <><Left>
+  " inoremap <expr> >  strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
+  " inoremap {  {}<Left>
+  " inoremap <expr> }  strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+  " inoremap <expr> <CR> strpart(getline('.'), col('.')-1, 1) == '}' ? '<CR><CR><Up><Tab>' : '<CR>'
+  " "    inoremap '  ''<Left>
+  " "    inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == '\'' ? '\<Right>' : '\'\'\<Left>'
+  " inoremap "  ""<Left>
+  " inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
 
   " Save/Open Sessions
   "map <F2> :Obsess ~/Obsession.vim
@@ -242,11 +247,7 @@
     au Syntax * RainbowParenthesesLoadBraces
   " }}}
 
-  " NERDTree/NERDTreeTabs {{{
-    "autocmd StdinReadPre * let s:std_in=1
-    "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    " map <C-n> :NERDTreeTabsToggle<CR>
-    " map <C-n> :NERDTreeToggle<CR>
+  " NERDTree {{{
     map <C-n> :NERDTreeToggle<CR>
     map <Leader>nt :NERDTreeToggle<CR>
     map <Leader>nf :NERDTreeFind<CR>
@@ -254,18 +255,13 @@
     let NERDTreeShowLineNumbers=1
     " make sure relative line numbers are used
     autocmd FileType nerdtree setlocal relativenumber
+    " Automatically refresh NERDTree when buffer is written
     " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
     " Close NERDTree if last buffer
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     let NERDTreeShowHidden=1
     let NERDTreeShowBookmarks=1
     let g:NERDTreeShowGitStatus = 1
-    " let g:nerdtree_tabs_open_on_console_startup=0
-    " let g:nerdtree_tabs_open_on_gui_startup=0
-    " let g:nerdtree_tabs_synchronize_focus=1
-    " let g:nerdtree_tabs_focus_on_files=1
-    " let g:nerdtree_tabs_autofind=1
-    " let g:nerdtree_tabs_synchronize_view=0
   " }}}
 
   " Indent Guides {{{
@@ -284,8 +280,8 @@
 
   " Solarized {{{
     let g:solarized_termtrans=1
-    "    let g:solarized_termcolors=256
-    "    let g:solarized_contrast='high'
+    " let g:solarized_termcolors=256
+    " let g:solarized_contrast='high'
   " }}}
 
   " Vim-Session {{{
@@ -314,16 +310,37 @@
     " set statusline+=%*
   " }}}
 
-  " Airline {{{
+  " vim-airline {{{
     let g:airline_detect_modified=1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
   " }}}
 
-  " Airline Theme {{{
+  " vim-airline-themes {{{
+    " let g:airline_theme='angr'
+    let g:airline_theme='solarized'
     let g:airline_solarized_bg='dark'
     let g:airline_powerline_fonts = 1
-    " let g:airline#extensions#tabline#enabled = 1
-    " let g:airline#extensions#tabline#left_sep = ' '
-    " let g:airline#extensions#tabline#left_alt_sep = '|'
+  " }}}
+
+  " vim-bufferline {{{
+    let g:bufferline_echo = 0
+    let g:bufferline_active_buffer_left = '['
+    let g:bufferline_active_buffer_right = ']'
+  " }}}
+
+  " lightline.vim {{{
+  let g:lightline = {
+    \ 'colorscheme': 'solarized dark',
+    \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
+      \ },
+    \ }
   " }}}
 
   " NERDCommenter {{{
@@ -371,7 +388,8 @@
     let g:vim_markdown_folding_disabled = 1
   " }}}
 
-  " Coc.nvim {{{
+  " coc.nvim {{{
+    let $NVIM_COC_LOG_LEVEL = 'debug'
     let g:coc_global_extensions=['coc-java','coc-vimlsp','coc-python','coc-eslint','coc-tsserver','coc-git','coc-json','coc-yaml','coc-highlight','coc-xml']
     " if hidden is not set, TextEdit might fail.
     set hidden
@@ -507,9 +525,9 @@
   " }}} /Coc.nvim
 
   " ale {{{
-    let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
-    " Set this variable to 1 to fix files when you save them.
-    let g:ale_fix_on_save = 1
+    " let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+    " " Set this variable to 1 to fix files when you save them.
+    " let g:ale_fix_on_save = 1
   " }}}
 
 " }}} /Plugin Settings and Cosmestics
