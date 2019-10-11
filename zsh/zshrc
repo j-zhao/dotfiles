@@ -60,7 +60,7 @@ plugins=(
   git
   osx
   vi-mode
-  vim-interaction
+  # vim-interaction
   vundle
   tmux
   profiles
@@ -116,3 +116,5 @@ export TERM=xterm-256color
 
 eval $(thefuck --alias)
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
