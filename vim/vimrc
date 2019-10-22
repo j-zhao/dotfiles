@@ -7,7 +7,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Author: Jesse Zhao
 " Repo: github.com/j-zhao/dotfiles
-" Last Modified: September 2019
+" Last Modified: October 2019
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-plug, and Plugins {{{
@@ -46,15 +46,15 @@
     " Plug 'valloric/YouCompleteMe'
     " Plug 'ervandew/supertab'
     " Plug 'vim-syntastic/syntastic'
-    " Plug 'dense-analysis/ale'
     " Plug 'itchyny/lightline.vim'
 
     Plug 'airblade/vim-gitgutter'
     Plug 'altercation/vim-colors-solarized'
-
     Plug 'bazelbuild/vim-bazel'
     Plug 'bling/vim-bufferline'
     Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'dense-analysis/ale'
+    Plug 'direnv/direnv.vim'
     Plug 'dzeban/vim-log-syntax'
     Plug 'fatih/vim-go'
     Plug 'google/vim-maktaba'
@@ -65,11 +65,13 @@
     Plug 'kien/rainbow_parentheses.vim'
     Plug 'liuchengxu/vista.vim'
     Plug 'majutsushi/tagbar'
+    Plug 'moll/vim-bbye'
     Plug 'mtscout6/syntastic-local-eslint.vim'
     Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
     Plug 'pangloss/vim-javascript'
     Plug 'plasticboy/vim-markdown'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/nerdtree'
     Plug 'solarnz/thrift.vim'
@@ -82,8 +84,6 @@
     Plug 'xolox/vim-misc'
     Plug 'xolox/vim-session'
     Plug 'xuyuanp/nerdtree-git-plugin'
-
-    Plug 'ryanoasis/vim-devicons'
 
     " Coc Plugins {{{
 
@@ -195,7 +195,6 @@
     " set guifont=Consolas:h11
     set guifont=FuraCode\ Nerd\ Font\ Mono\ Retina:h11,Fira\ Code:h11,Consolas:h11
   else
-    let s:uname = system('uname')
     " Startup directory
     set t_BE=
     cd ~/Projects
@@ -204,8 +203,11 @@
     " map <C-c> "+y
     " map <C-v> "+p
     set guifont=FuraCode\ Nerd\ Font\ Mono\ Retina:h12,FuraCode\ Nerd\ Font\ Mono:h12,Fira\ Code\ Retina:h12,Fira\ Code:h12
-    set shell=/bin/sh
-    if s:uname == 'Darwin\n'
+    filetype plugin indent on
+    set shell=/bin/zsh
+    " set shell='/bin/zsh'
+    " set shell='zsh\ -i'
+    if has("gui_macvim") || has("macunix")
       " set guifont=Menlo:h12
       set macligatures
     endif
@@ -267,6 +269,7 @@
     let NERDTreeShowHidden=1
     let NERDTreeShowBookmarks=1
     let g:NERDTreeShowGitStatus = 1
+    let g:NERDTreeHighlightFoldersFullName = 1
   " }}}
 
   " Indent Guides {{{
@@ -318,8 +321,9 @@
   " vim-airline {{{
     let g:airline_detect_modified=1
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_sep = ''
     let g:airline#extensions#tabline#left_alt_sep = '|'
+    let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   " }}}
 
   " vim-airline-themes {{{
@@ -356,16 +360,15 @@
   " }}}
 
   " vim-go {{{
-    let g:go_autodetect_gopath = 0
     let $USE_SYSTEM_GO=1
-    let g:go_def_mode='gopls'
-    let g:go_info_mode='gopls'
-    " Launch gopls when Go files are in use
-    " let g:LanguageClient_serverCommands = {
-    "        \ 'go': ['gopls']
-    "        \ }
+    let g:go_autodetect_gopath = 1
+    " let g:go_bin_path = $GOPATH."/bin"
+    " let g:go_def_mode='gopls'
+    " let g:go_info_mode='gopls'
     " " Run gofmt on save
-    " autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+    autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+    let g:go_debug=['shell-command']
+    let g:go_auto_sameids = 1
     let g:go_fmt_options = "-tabs=false -tabwidth=4"
     let g:go_fmt_command = "goimports"
     let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
@@ -382,7 +385,25 @@
     let g:go_highlight_operators = 1
     let g:go_highlight_extra_types = 1
     let g:go_highlight_build_constraints = 1
-    let g:go_highlight_generate_tags = 1
+    " let g:go_highlight_generate_tags = 1
+    let g:go_highlight_structs = 0
+    let g:go_highlight_interfaces = 0
+    let g:go_highlight_operators = 0
+  " }}}
+
+  " fzf {{{
+    set rtp+=/usr/local/opt/fzf
+    " [Buffers] Jump to the existing window if possible
+    let g:fzf_buffers_jump = 1
+
+    " [[B]Commits] Customize the options used by 'git log':
+    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+    " [Tags] Command to generate tags file
+    let g:fzf_tags_command = 'ctags -R'
+
+    " [Commands] --expect expression for directly executing the command
+    let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   " }}}
 
   " Vista {{{
@@ -454,7 +475,8 @@
     endfunction
 
     " Use <c-space> to trigger completion.
-    inoremap <silent><expr> <c-space> coc#refresh()
+    " inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <C-@> coc#refresh()
 
     " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
     " Coc only does snippet and additional edit on confirm.
@@ -555,9 +577,22 @@
   " }}} /Coc.nvim
 
   " ale {{{
-    " let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+    let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
     " " Set this variable to 1 to fix files when you save them.
     " let g:ale_fix_on_save = 1
+  " }}}
+
+  " vim-devicons {{{
+  let g:WebDevIconsUnicodeDecorateFolderNodes = 1 " enable folder glyph flag
+  " let g:DevIconsEnableFoldersOpenClose = 1
+  " let g:DevIconsEnableFolderExtensionPatternMatching = 1
+  " let g:webdevicons_conceal_nerdtree_brackets = 1
+  " let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
+  " let g:DevIconsDefaultFolderOpenSymbol = ' '
+  " }}}
+
+  " vim-bbye {{{
+    nnoremap <Leader>q :Bdelete<CR>
   " }}}
 
 " }}} /Plugin Settings and Cosmestics
@@ -601,17 +636,13 @@
 
 " Cosmetics {{{
 
-  " Syntax Highlighting {{{
-    " autocmd BufNewFile,BufRead *.ion  set syntax=java
-  " }}} /Syntax Highlighting
-
   "Highlight over 80 characters
   "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
   "match OverLength /\%81v.\+/
 
   " if persistent_undo, configure a directory for it
   if has("persistent_undo")
-    set undodir=$HOME/.undodir/
+    set undodir=$HOME/.vim/.undodir//
     set undofile
   endif
 
@@ -620,95 +651,95 @@
   set showtabline=2
   " always show tabs in gvim, but not vim
   " set up tab labels with tab number, buffer name, number of windows
-  function! GuiTabLabel()
-    let label = ''
-    let bufnrlist = tabpagebuflist(v:lnum)
-    " Add '+' if one of the buffers in the tab page is modified
-    for bufnr in bufnrlist
-      if getbufvar(bufnr, "&modified")
-        let label = '+'
-        break
-      endif
-    endfor
-    " Append the tab number
-    let label .= v:lnum.': '
-    " Append the buffer name
-    let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
-    if name == ''
-      " give a name to no-name documents
-      if &buftype=='quickfix'
-        let name = '[Quickfix List]'
-      else
-        let name = '[No Name]'
-      endif
-    else
-      " get only the file name
-      let name = fnamemodify(name,":t")
-    endif
-    let label .= name
-    " Append the number of windows in the tab page
-    let wincount = tabpagewinnr(v:lnum, '$')
-    return label . '  [' . wincount . ']'
-  endfunction
-  set guitablabel=%{GuiTabLabel()}
-
-  " Tooltip to show multiple windows in a tab
-  " set up tab tooltips with every buffer name
-  function! GuiTabToolTip()
-    let tip = ''
-    let bufnrlist = tabpagebuflist(v:lnum)
-    for bufnr in bufnrlist
-      " separate buffer entries
-      if tip!=''
-        let tip .= " \n "
-      endif
-      " Add name of buffer
-      let name=bufname(bufnr)
-      if name == ''
-        " give a name to no name documents
-        if getbufvar(bufnr,'&buftype')=='quickfix'
-          let name = '[Quickfix List]'
-        else
-          let name = '[No Name]'
-        endif
-      endif
-      let tip.=name
-      " add modified/modifiable flags
-      if getbufvar(bufnr, "&modified")
-        let tip .= ' [+]'
-      endif
-      if getbufvar(bufnr, "&modifiable")==0
-        let tip .= ' [-]'
-      endif
-    endfor
-    return tip
-  endfunction
-  set guitabtooltip=%{GuiTabToolTip()}
-
-  set diffexpr=MyDiff()
-  function! MyDiff()
-    let opt = '-a --binary '
-    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-    let arg1 = v:fname_in
-    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-    let arg2 = v:fname_new
-    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-    let arg3 = v:fname_out
-    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-    let eq = ''
-    if $VIMRUNTIME =~ ' '
-      if &sh =~ '\<cmd'
-        let cmd = '""' . $VIMRUNTIME . '\diff"'
-        let eq = '"'
-      else
-        let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-      endif
-    else
-      let cmd = $VIMRUNTIME . '\diff'
-    endif
-    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-  endfunction
+  " function! GuiTabLabel()
+  "   let label = ''
+  "   let bufnrlist = tabpagebuflist(v:lnum)
+  "   " Add '+' if one of the buffers in the tab page is modified
+  "   for bufnr in bufnrlist
+  "     if getbufvar(bufnr, "&modified")
+  "       let label = '+'
+  "       break
+  "     endif
+  "   endfor
+  "   " Append the tab number
+  "   let label .= v:lnum.': '
+  "   " Append the buffer name
+  "   let name = bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
+  "   if name == ''
+  "     " give a name to no-name documents
+  "     if &buftype=='quickfix'
+  "       let name = '[Quickfix List]'
+  "     else
+  "       let name = '[No Name]'
+  "     endif
+  "   else
+  "     " get only the file name
+  "     let name = fnamemodify(name,":t")
+  "   endif
+  "   let label .= name
+  "   " Append the number of windows in the tab page
+  "   let wincount = tabpagewinnr(v:lnum, '$')
+  "   return label . '  [' . wincount . ']'
+  " endfunction
+  " set guitablabel=%{GuiTabLabel()}
+  " 
+  " " Tooltip to show multiple windows in a tab
+  " " set up tab tooltips with every buffer name
+  " function! GuiTabToolTip()
+  "   let tip = ''
+  "   let bufnrlist = tabpagebuflist(v:lnum)
+  "   for bufnr in bufnrlist
+  "     " separate buffer entries
+  "     if tip!=''
+  "       let tip .= " \n "
+  "     endif
+  "     " Add name of buffer
+  "     let name=bufname(bufnr)
+  "     if name == ''
+  "       " give a name to no name documents
+  "       if getbufvar(bufnr,'&buftype')=='quickfix'
+  "         let name = '[Quickfix List]'
+  "       else
+  "         let name = '[No Name]'
+  "       endif
+  "     endif
+  "     let tip.=name
+  "     " add modified/modifiable flags
+  "     if getbufvar(bufnr, "&modified")
+  "       let tip .= ' [+]'
+  "     endif
+  "     if getbufvar(bufnr, "&modifiable")==0
+  "       let tip .= ' [-]'
+  "     endif
+  "   endfor
+  "   return tip
+  " endfunction
+  " set guitabtooltip=%{GuiTabToolTip()}
+  " 
+  " set diffexpr=MyDiff()
+  " function! MyDiff()
+  "   let opt = '-a --binary '
+  "   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  "   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  "   let arg1 = v:fname_in
+  "   if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  "   let arg2 = v:fname_new
+  "   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  "   let arg3 = v:fname_out
+  "   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  "   let eq = ''
+  "   if $VIMRUNTIME =~ ' '
+  "     if &sh =~ '\<cmd'
+  "       let cmd = '""' . $VIMRUNTIME . '\diff"'
+  "       let eq = '"'
+  "     else
+  "       let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+  "     endif
+  "   else
+  "     let cmd = $VIMRUNTIME . '\diff'
+  "   endif
+  "   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+  " endfunction
 
 " }}} /Cosmetic
 
