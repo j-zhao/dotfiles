@@ -28,7 +28,7 @@
     " - For Neovim: ~/.local/share/nvim/plugged
     " - Avoid using standard Vim directory names like 'plugin'
     if has('nvim')
-      call plug#being('~/.local/share/nvim/plugged')
+      call plug#begin('~/.local/share/nvim/plugged')
     elseif has('win32')
       call plug#begin('~/vimfiles/plugged')
     else
@@ -205,8 +205,6 @@
     set guifont=FuraCode\ Nerd\ Font\ Mono\ Retina:h12,FuraCode\ Nerd\ Font\ Mono:h12,Fira\ Code\ Retina:h12,Fira\ Code:h12
     filetype plugin indent on
     set shell=/bin/zsh
-    " set shell='/bin/zsh'
-    " set shell='zsh\ -i'
     if has("gui_macvim") || has("macunix")
       " set guifont=Menlo:h12
       set macligatures
