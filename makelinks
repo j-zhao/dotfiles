@@ -16,7 +16,8 @@ tryMkdir() {
 }
 
 # vim
-symlink "$DOTFILES_DIR/vim/vimrc" "$HOMEDIR/.vimrc"
+# symlink "$DOTFILES_DIR/vim/vimrc" "$HOMEDIR/.vimrc"
+symlink "$DOTFILES_DIR/vim/init.vim" "$HOMEDIR/.config/nvim/init.vim"
 # tryMkdir "$HOMEDIR/.vim/bundle"
 # symlink "$DOTFILES_TMP/Vundle.vim" "$HOMEDIR/.vim/bundle/Vundle.vim"
 
