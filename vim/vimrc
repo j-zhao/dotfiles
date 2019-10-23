@@ -56,6 +56,7 @@ endif
   " Plug 'vim-syntastic/syntastic'
   " Plug 'itchyny/lightline.vim'
   " Plug 'altercation/vim-colors-solarized'
+  " Plug 'kien/rainbow_parentheses.vim'
 
   Plug 'airblade/vim-gitgutter'
   Plug 'bazelbuild/vim-bazel'
@@ -71,7 +72,6 @@ endif
   Plug 'jiangmiao/auto-pairs'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'kien/rainbow_parentheses.vim'
   Plug 'liuchengxu/vista.vim'
   Plug 'majutsushi/tagbar'
   Plug 'moll/vim-bbye'
@@ -256,10 +256,10 @@ endif
 
   " Rainbow Parens {{{
   " Rainbow Parens Always on
-  au VimEnter * RainbowParenthesesToggle
-  au Syntax * RainbowParenthesesLoadRound
-  au Syntax * RainbowParenthesesLoadSquare
-  au Syntax * RainbowParenthesesLoadBraces
+  " au VimEnter * RainbowParenthesesToggle
+  " au Syntax * RainbowParenthesesLoadRound
+  " au Syntax * RainbowParenthesesLoadSquare
+  " au Syntax * RainbowParenthesesLoadBraces
   " }}}
 
   " NERDTree {{{
@@ -594,7 +594,7 @@ endif
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1 " enable folder glyph flag
   let g:DevIconsEnableFoldersOpenClose = 1
   " let g:DevIconsEnableFolderExtensionPatternMatching = 1
-  " let g:webdevicons_conceal_nerdtree_brackets = 1
+  let g:webdevicons_conceal_nerdtree_brackets = 1
   " let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
   " let g:DevIconsDefaultFolderOpenSymbol = ' '
   " }}}
