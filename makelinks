@@ -29,7 +29,7 @@ symlink "$DOTFILES_DIR/zsh/zshrc" "$HOMEDIR/.zshrc"
 # tryMkdir "$HOMEDIR/.oh-my-zsh/custom/themes"
 
 # git
-# symlink "$DOTFILES_DIR/.gitconfig" "$HOMEDIR/.gitconfig"
+symlink "$DOTFILES_DIR/.gitconfig" "$HOMEDIR/.gitconfig"
 # symlink "$DOTFILES_DIR/.gitignore_global" "$HOMEDIR/.gitignore_global"
 
 # tmux
