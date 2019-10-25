@@ -1,10 +1,10 @@
-#!/bin/zsh
+#!/bin/bash
 
 echo "CREATING SYMLINKS"
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_TMP="$DOTFILES_DIR/tmp"
-HOMEDIR=$( getent passwd "$SUDO_USER" | cut -d: -f6 )
+# HOMEDIR=$( getent passwd "$SUDO_USER" | cut -d: -f6 )
 
 symlink() {
   rm -f $2 || true
@@ -16,22 +16,21 @@ tryMkdir() {
 }
 
 # vim
-# symlink "$DOTFILES_DIR/vim/vimrc" "$HOMEDIR/.vimrc"
-symlink "$DOTFILES_DIR/vim/init.vim" "$HOMEDIR/.config/nvim/init.vim"
-# tryMkdir "$HOMEDIR/.vim/bundle"
-# symlink "$DOTFILES_TMP/Vundle.vim" "$HOMEDIR/.vim/bundle/Vundle.vim"
+symlink "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
+symlink "$DOTFILES_DIR/vim/init.vim" "$HOME/.config/nvim/init.vim"
+# tryMkdir "$HOME/.vim/bundle"
+# symlink "$DOTFILES_TMP/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim"
 
 # zsh
-symlink "$DOTFILES_DIR/zsh/zshrc" "$HOMEDIR/.zshrc"
-# symlink "$DOTFILES_DIR/oh-my-zsh" "$HOMEDIR/.oh-my-zsh"
-# tryMkdir "$HOMEDIR/.oh-my-zsh/custom/plugins"
-# symlink "$DOTFILES_DIR/zsh-syntax-highlighting" "$HOMEDIR/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-# tryMkdir "$HOMEDIR/.oh-my-zsh/custom/themes"
+symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
+tryMkdir "$HOME/.config/kitty"
+symlink "$DOTFILES_DIR/shell/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+symlink "$DOTFILES_DIR/shell/challenger-deep.conf" "$HOME/.config/kitty/challenger-deep.conf"
 
 # git
-symlink "$DOTFILES_DIR/.gitconfig" "$HOMEDIR/.gitconfig"
-# symlink "$DOTFILES_DIR/.gitignore_global" "$HOMEDIR/.gitignore_global"
+# symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
+# symlink "$DOTFILES_DIR/.gitignore_global" "$HOME/.gitignore_global"
 
 # tmux
-# tryMkdir "$HOMEDIR/.tmux/plugins"
-symlink "$DOTFILES_DIR/tmux.conf" "$HOMEDIR/.tmux.conf"
+# tryMkdir "$HOME/.tmux/plugins"
+symlink "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"
