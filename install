@@ -14,9 +14,8 @@ install_from_github() {
         git clone  "https://github.com/$1.git" "./tmp/$REPO"
 }
 
-install_from_github "robbyrussell/oh-my-zsh"
-install_from_github "VundleVim/Vundle.vim"
-install_from_github "zsh-users/zsh-syntax-highlighting"
+# Run scripts
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 ./makelinks
 
