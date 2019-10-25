@@ -2,8 +2,10 @@
 
 echo "CREATING SYMLINKS"
 
+#TODO: Make this environment friendly for Linux/Mac, or generally unix friendly
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES_TMP="$DOTFILES_DIR/tmp"
+HOMEDIR=$HOME
 # HOMEDIR=$( getent passwd "$SUDO_USER" | cut -d: -f6 )
 
 symlink() {
@@ -16,20 +18,21 @@ tryMkdir() {
 }
 
 # vim
-symlink "$DOTFILES_DIR/vim/vimrc" "$HOME/.vimrc"
-tryMkdir "$HOME/.config/nvim"
-symlink "$DOTFILES_DIR/vim/init.vim" "$HOME/.config/nvim/init.vim"
+symlink "$DOTFILES_DIR/vim/vimrc" "$HOMEDIR/.vimrc"
+tryMkdir "$HOMEDIR/.config/nvim"
+symlink "$DOTFILES_DIR/vim/nvim/init.vim" "$HOMEDIR/.config/nvim/init.vim"
+symlink "$DOTFILES_DIR/vim/nvim/coc-settings.json" "$HOMEDIR/.config/nvim/coc-settings.json"
 
 # zsh
-symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
-tryMkdir "$HOME/.config/kitty"
-symlink "$DOTFILES_DIR/shell/kitty.conf" "$HOME/.config/kitty/kitty.conf"
-symlink "$DOTFILES_DIR/shell/challenger-deep.conf" "$HOME/.config/kitty/challenger-deep.conf"
+symlink "$DOTFILES_DIR/zsh/zshrc" "$HOMEDIR/.zshrc"
+tryMkdir "$HOMEDIR/.config/kitty"
+symlink "$DOTFILES_DIR/shell/kitty.conf" "$HOMEDIR/.config/kitty/kitty.conf"
+symlink "$DOTFILES_DIR/shell/challenger-deep.conf" "$HOMEDIR/.config/kitty/challenger-deep.conf"
 
 # git
-# symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
-# symlink "$DOTFILES_DIR/.gitignore_global" "$HOME/.gitignore_global"
+# symlink "$DOTFILES_DIR/.gitconfig" "$HOMEDIR/.gitconfig"
+# symlink "$DOTFILES_DIR/.gitignore_global" "$HOMEDIR/.gitignore_global"
 
 # tmux
-# tryMkdir "$HOME/.tmux/plugins"
-symlink "$DOTFILES_DIR/tmux.conf" "$HOME/.tmux.conf"
+# tryMkdir "$HOMEDIR/.tmux/plugins"
+symlink "$DOTFILES_DIR/tmux.conf" "$HOMEDIR/.tmux.conf"
