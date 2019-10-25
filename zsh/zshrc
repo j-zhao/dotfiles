@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 
 # Custom Settings
-bindkey -v
+# bindkey -v
 
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
