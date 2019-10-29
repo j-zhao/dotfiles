@@ -59,10 +59,10 @@ endif
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'ap/vim-buftabline'
+" Plug 'bling/vim-bufferline'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
-Plug 'bling/vim-bufferline'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale'
@@ -354,11 +354,17 @@ set laststatus=2            " always statusbar
 " lightline.vim {{{
 let g:lightline = {
       \ 'colorscheme': 'challenger_deep',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
       \ }
 let g:lightline.enable = {
       \ 'statusline': 1,
       \ 'tabline': 0
       \ }
+function! LightlineFilename()
+  return expand('%')
+endfunction
 " let g:lightline = {
 "       \ 'colorscheme': 'challenger_deep',
 "       \ 'active': {
@@ -629,7 +635,8 @@ map <C-W>c <Plug>(wintabs_close_window)
 map <C-W>o <Plug>(wintabs_only_window)
 command! Tabc WintabsCloseVimtab
 command! Tabo WintabsOnlyVimtab
-" Left pointing arrow, used as previous buffers indicator.
+let g:wintabs_ui_buffer_name_format=" %n|%t"
+" " Left pointing arrow, used as previous buffers indicator.
 " let g:wintabs_powerline_arrow_left = " \u25c0 "
 " " Right pointing arrow, used as next buffers indicator.
 " let g:wintabs_powerline_arrow_right = " \u25b6 "
