@@ -2,7 +2,7 @@
 # Mac
 
 # alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-alias vim='nvim'
+# alias vim='nvim'
 alias ll='ls -lg'
 
 # export PATH="/usr/local/sbin:$PATH"
