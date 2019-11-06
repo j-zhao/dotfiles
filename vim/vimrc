@@ -61,6 +61,7 @@ endif
 " Plug 'ap/vim-buftabline'
 " Plug 'bling/vim-bufferline'
 " Plug 'tpope/vim-sleuth'
+" Plug 'mtscout6/syntastic-local-eslint.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
@@ -80,7 +81,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
 Plug 'moll/vim-bbye'
-Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'pangloss/vim-javascript'
@@ -197,7 +197,7 @@ cmap<C-V> <C-R>+
 
 if has('win32')
   " Startup directory
-  cd D:\Projects
+  " cd D:\Projects
   set enc=utf-8
   behave mswin
   set directory^=$HOME/swaps
@@ -211,7 +211,7 @@ if has('win32')
 else
   " Startup directory
   set t_BE=
-  cd ~/Projects
+  " cd ~/Projects
   set directory^=$HOME/.vim/swaps//
   " nmap <C-a> ggVG$
   " map <C-c> "+y
