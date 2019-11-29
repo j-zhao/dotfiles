@@ -9,6 +9,6 @@ alias lockscreen="betterlockscreen --lock blur"
 
 export TERM='konsole-256color'
 alias ll='ls -lg'
-alias vim='nvim'
+# alias vim='nvim'
 
 export PATH=$PATH:/usr/local/go/bin
