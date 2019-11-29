@@ -392,9 +392,18 @@ let g:NERDSpaceDelims = 1
 " }}} /NERDCommenter
 
 " vim-go {{{
-let $USE_SYSTEM_GO=1
+if $MONOREPO_GOPATH_MODE == 1
+  " let $USE_SYSTEM_GO=1
+  echom "Working in monorepo."
+  " let $GO111MODULE="on"
+  " let $GOPROXY="goproxy.uberinternal.com"
+  " if $GO_BIN_PATH != ""
+  "   let g:go_bin_path=$GO_BIN_PATH
+  " endif
+  " let g:go_bin_path='$GOPATH/bin'
+endif
+let g:go_gopls_complete_unimported = 1
 let g:go_autodetect_gopath = 1
-let g:go_bin_path = $GOPATH."/bin"
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 " " Run gofmt on save
@@ -638,6 +647,7 @@ map <C-W>o <Plug>(wintabs_only_window)
 command! Tabc WintabsCloseVimtab
 command! Tabo WintabsOnlyVimtab
 let g:wintabs_ui_buffer_name_format=" %n|%t"
+let g:wintabs_autoclose = 0
 " " Left pointing arrow, used as previous buffers indicator.
 " let g:wintabs_powerline_arrow_left = " \u25c0 "
 " " Right pointing arrow, used as next buffers indicator.

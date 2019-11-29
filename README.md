@@ -4,6 +4,8 @@ My dot files, configurations, and general miscellaneous unix environment setting
 
 Credit to https://github.com/shadanan/dotfiles for install scripts.
 
+Will be using https://www.atlassian.com/git/tutorials/dotfiles to modify this repo in the near future.
+
 ## Dependencies
 
 - `git`

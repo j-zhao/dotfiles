@@ -1,0 +1,79 @@
+# This extra logic is controlled by whether MONOREPO_GOPATH_MODE exists in the
+# environment, either manually, in a shell rc file, or by running the
+# "gopathmode off|on" command provided by a bash library called
+# gopathmodeFunc.bash
+#
+# This script sets up the environment for GOPATH mode (no modules). The PATH
+# environment variable will point to the go_sdk/bin directory used by bazel. If
+# some go tools don't exist there, this script may create them.  In case the
+# user has vim-go installed, this script calls ":GoInstallBinaries" vim
+# function to install all Go helper binaries in the go_sdk/bin directory.
+# Otherwise, this script will build "dlv" by invoking bazel (this feature may
+# be removed in the future if a non-wrapper dlv binary is provided as a binary
+# in the monorepo).
+#
+# Authored by Ori Shalev (ori@uber.com), Zack Train (ztrain@uber.com)
+
+# debug hook useful for development and/or troubleshooting. For
+# troubleshooting, export DEBUG=1 and re-trigger.
+printenv DEBUG >/dev/null && set -x
+
+[ -z "$MONOREPO_GOPATH_MODE" ] && {
+	return
+}
+
+export GO111MODULE=off
+
+git_base=$(git rev-parse --show-toplevel)
+
+if base=$(readlink "$git_base/bazel-out") ; then
+	bazel_base=${base%%/execroot*}
+else
+	bazel_base=$(bazel info output_base)
+fi
+go_bin_path=$bazel_base/external/go_sdk/bin
+
+export PATH=$go_bin_path:$PATH
+
+VIM=$(command -v vim)
+if [[ "$VIM" =~ "alias" ]]; then
+	VIM=$(command -p -v vim)
+fi
+if [ -n "$EDITOR" ]; then
+	ed="$(basename "$EDITOR")"
+	ed="${ed%% *}"
+	if [[ "$ed" =~ "vi" ]]; then
+		VIM=$(command -v "$ed")
+		if [[ "$VIM" =~ "alias" ]]; then
+			VIM=$(command -p -v "$ed")
+		fi
+	fi
+fi
+[ -z "$VIM" ] && {
+	echo "Unable to locate vim in this shell :-(."
+	return
+}
+
+if $VIM -n -e -c 'if exists(":GoInstallBinaries") | q | else | cq' ; then
+	# vim-go is installed, call GoInstallBinaries through vim-go
+	# keep path minimal
+	temppath="$go_bin_path:/usr/bin:/bin"
+	vimpathcmd="let g:go_bin_path = \"$go_bin_path\""
+	# NOTE: some users may briefly see errors when this runs due to vim plugins
+	# with dependencies not in path - could probably handle with a tempvimrc
+	# that only loads the vim-go, but let's get this out the door.
+	PATH="$temppath" GOFLAGS="" $VIM -c "$vimpathcmd" -c "GoInstallBinaries" -c qall
+else
+	# vim-go is not installed, we would like to have dlv, use bazel to build it
+	if [ ! -x "$go_bin_path/dlv" ]; then
+		bazel build @com_github_go_delve_delve//cmd/dlv:dlv
+		bazel_out=$(bazel info output_path)
+		dlv_dir=$bazel_out/darwin-fastbuild/bin/external/com_github_go_delve_delve/cmd/dlv/darwin_amd64_stripped
+		mv "$dlv_dir/dlv" "$go_bin_path"
+	fi
+fi
+
+# clean up after dlv install
+if [ -d "src/github.com/go-delve" ]; then
+	rm -rf src/github.com
+fi
