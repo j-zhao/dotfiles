@@ -9,3 +9,4 @@
 - NPM
 - Yarn
 - FZF
+- [lazygit](https://github.com/jesseduffield/lazygit)
