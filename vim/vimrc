@@ -481,7 +481,20 @@ let g:vim_markdown_folding_disabled = 1
 
 " coc.nvim {{{
 let $NVIM_COC_LOG_LEVEL = 'debug'
-let g:coc_global_extensions=['coc-java','coc-vimlsp','coc-python','coc-eslint','coc-tsserver','coc-git','coc-json','coc-yaml','coc-highlight','coc-xml','coc-lists']
+let g:coc_global_extensions = [
+      \ 'coc-java',
+      \ 'coc-vimlsp',
+      \ 'coc-python',
+      \ 'coc-eslint',
+      \ 'coc-tsserver',
+      \ 'coc-git',
+      \ 'coc-json',
+      \ 'coc-yaml',
+      \ 'coc-highlight',
+      \ 'coc-xml',
+      \ 'coc-lists',
+      \ 'coc-prettier'
+      \ ]
 " if hidden is not set, TextEdit might fail.
 set hidden
 
