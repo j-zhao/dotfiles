@@ -50,7 +50,6 @@ endif
 " Plug 'leafgarland/typescript-vim'
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-surround'
-" Plug 'ciaranm/detectindent'
 " Plug 'valloric/YouCompleteMe'
 " Plug 'ervandew/supertab'
 " Plug 'vim-syntastic/syntastic'
@@ -60,8 +59,8 @@ endif
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'ap/vim-buftabline'
 " Plug 'bling/vim-bufferline'
-" Plug 'tpope/vim-sleuth'
 " Plug 'mtscout6/syntastic-local-eslint.vim'
+" Plug 'direnv/direnv.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
@@ -69,7 +68,6 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale'
-Plug 'direnv/direnv.vim'
 Plug 'dzeban/vim-log-syntax'
 Plug 'fatih/vim-go'
 Plug 'google/vim-maktaba'
@@ -91,6 +89,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'solarnz/thrift.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
 Plug 'udalov/kotlin-vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -136,12 +135,12 @@ set linebreak
 set mouse=a
 set splitright
 set splitbelow
-" Handled by vim-sleuth
+" Indentation handled by vim-sleuth
 " set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
 " set smarttab
 " set smartindent
-set autoindent
-set tabstop=4
+" set autoindent
+" set tabstop=4
 " set showbreak=\\
 " set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
 if has('gui_running')
