@@ -7,7 +7,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Author: Jesse Zhao
 " Repo: github.com/j-zhao/dotfiles
-" Last Modified: October 2019
+" Last Modified: January 2020
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-plug, and Plugins {{{
@@ -136,8 +136,9 @@ set mouse=a
 set splitright
 set splitbelow
 " Tab and whitespace related
-set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
-set smarttab
+" set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
+" set shiftwidth=4 softtabstop=4 expandtab
+" set smarttab
 set smartindent autoindent
 " set autoindent
 " set showbreak=\\
@@ -163,14 +164,11 @@ colorscheme challenger_deep
 
 " Functions and AutoCommands {{{
 
-augroup reload_vimrc
+augroup autocmds
   autocmd!
-  autocmd BufWritePost $MYVIMRC || *vimrc* source $MYVIMRC
+  " reload_vimrc
+  autocmd BufWritePost init.vim,vimrc,.vimrc source $MYVIMRC
 augroup END
-
-function! OpenVimrcs()
-  tabnew $MYVIMRC
-endfunction
 
 " }}} /Functions and AutoCommands
 
@@ -276,11 +274,14 @@ autocmd FileType nerdtree setlocal relativenumber
 " Automatically refresh NERDTree when buffer is written
 " autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
 " Close NERDTree if last buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 let g:NERDTreeShowGitStatus = 1
 let g:NERDTreeHighlightFoldersFullName = 1
+" Open NERDTree automatically when vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " }}} /NERDTree
 
 " Indent Guides {{{
