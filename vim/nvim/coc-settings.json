@@ -1,5 +1,6 @@
 {
   "java.home": "/Library/Java/JavaVirtualMachines/openjdk-12.0.2.jdk/Contents/Home",
+  "eslint.autoFixOnSave": true,
   "languageserver": {
     "golang": {
       "command": "gopls",

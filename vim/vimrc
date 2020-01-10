@@ -60,7 +60,6 @@ endif
 " Plug 'ap/vim-buftabline'
 " Plug 'bling/vim-bufferline'
 " Plug 'mtscout6/syntastic-local-eslint.vim'
-" Plug 'direnv/direnv.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
@@ -68,6 +67,7 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale'
+Plug 'direnv/direnv.vim'
 Plug 'dzeban/vim-log-syntax'
 Plug 'fatih/vim-go'
 Plug 'google/vim-maktaba'
@@ -135,12 +135,11 @@ set linebreak
 set mouse=a
 set splitright
 set splitbelow
-" Indentation handled by vim-sleuth
-" set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
-" set smarttab
-" set smartindent
+" Tab and whitespace related
+set softtabstop=4 shiftwidth=4 tabstop=4 expandtab
+set smarttab
+set smartindent autoindent
 " set autoindent
-" set tabstop=4
 " set showbreak=\\
 " set listchars=tab:>~,nbsp:_,trail:.,extends:>,precedes:<
 if has('gui_running')
@@ -166,7 +165,7 @@ colorscheme challenger_deep
 
 augroup reload_vimrc
   autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+  autocmd BufWritePost $MYVIMRC || *vimrc* source $MYVIMRC
 augroup END
 
 function! OpenVimrcs()
