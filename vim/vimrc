@@ -60,6 +60,7 @@ endif
 " Plug 'ap/vim-buftabline'
 " Plug 'bling/vim-bufferline'
 " Plug 'mtscout6/syntastic-local-eslint.vim'
+" Plug 'tpope/vim-sleuth'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
@@ -89,7 +90,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'solarnz/thrift.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-" Plug 'tpope/vim-sleuth'
 Plug 'udalov/kotlin-vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -287,6 +287,11 @@ let g:NERDTreeHighlightFoldersFullName = 1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " }}} /NERDTree
 
+" DetectIndent {{{
+let g:detectindent_preferred_indent = 4
+autocmd BufReadPost * :DetectIndent
+" }}} /DetectIndent
+
 " Indent Guides {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size=1
@@ -316,11 +321,6 @@ let g:session_autosave_periodic=1
 " GitGutter {{{
 " set updatetime=250
 " }}}
-
-" DetectIndent {{{
-let g:detectindent_preferred_indent = 4
-autocmd BufReadPost * :DetectIndent
-" }}} /DetectIndent
 
 " vim-airline {{{
 " let g:airline_detect_modified=1
