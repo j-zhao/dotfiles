@@ -80,7 +80,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
 Plug 'moll/vim-bbye'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'ryanoasis/vim-devicons'
@@ -89,7 +89,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'solarnz/thrift.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 Plug 'udalov/kotlin-vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -126,10 +126,10 @@ call plug#end()
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 scriptencoding utf-8
+set encoding=utf-8
 set lazyredraw
 set smartcase ignorecase
 " set showmode
-set encoding=utf-8
 set number relativenumber
 set linebreak
 set mouse=a
@@ -167,7 +167,10 @@ colorscheme challenger_deep
 augroup autocmds
   autocmd!
   " reload_vimrc
-  autocmd BufWritePost init.vim,vimrc,.vimrc source $MYVIMRC
+  autocmd BufWritePost init.vim,vimrc,.vimrc
+              \ echo "Reloading vimrc..." |
+              \ source $MYVIMRC |
+              \ echo "Reloaded vimrc!" |
 augroup END
 
 " }}} /Functions and AutoCommands
@@ -311,26 +314,13 @@ let g:session_autosave_periodic=1
 " }}} /Vim-Session
 
 " GitGutter {{{
-  " set updatetime=250
+" set updatetime=250
 " }}}
 
 " DetectIndent {{{
-" let g:detectindent_preferred_indent = 4
-" autocmd BufReadPost * :DetectIndent
+let g:detectindent_preferred_indent = 4
+autocmd BufReadPost * :DetectIndent
 " }}} /DetectIndent
-
-" Statusline {{{
-set laststatus=2            " always statusbar
-" set statusline=%{getcwd()}: " pwd of vim
-" set statusline+=\ %f%m%=    " relative path to filename, modified flag, RHS
-" set statusline+=%c,         " char number
-" set statusline+=%l/%L\ %y   " curr line/total line [filetype]
-" set statusline+=%{fugitive#statusline()} " show current git branch with fugitive
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%{ObsessionStatus('Obsessed','!Obsessed')}
-" set statusline+=%*
-" }}}
 
 " vim-airline {{{
 " let g:airline_detect_modified=1
@@ -352,36 +342,6 @@ set laststatus=2            " always statusbar
 " let g:bufferline_active_buffer_left = '['
 " let g:bufferline_active_buffer_right = ']'
 " }}} /vim-bufferline
-
-" lightline.vim {{{
-let g:lightline = {
-      \ 'colorscheme': 'challenger_deep',
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ }
-      \ }
-let g:lightline.enable = {
-      \ 'statusline': 1,
-      \ 'tabline': 0
-      \ }
-function! LightlineFilename()
-  return expand('%')
-endfunction
-" let g:lightline = {
-"       \ 'colorscheme': 'challenger_deep',
-"       \ 'active': {
-"       \   'left': [ [ 'mode', 'paste' ],
-"       \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
-"       \   'right': [ [ 'lineinfo' ],
-"       \              [ 'percent' ],
-"       \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
-"       \ },
-"       \ }
-" let g:lightline = {
-"       \ 'separator': { 'left': '>', 'right': '<' },
-"       \ 'subseparator': { 'left': '>', 'right': '<' }
-"       \ }
-" }}} /lightline.vim
 
 " NERDCommenter {{{
 let g:NERDCompactSexyComs = 1
@@ -530,7 +490,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Use <c-space> to trigger completion.
 " inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <C-@> coc#refresh()
+inoremap <silent><expr> <C-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -628,7 +588,71 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W' . info['warning'])
+  endif
+  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+endfunction
+
 " }}} /Coc.nvim
+
+" Statusline {{{
+" set laststatus=2            " always statusbar
+" set statusline=%{getcwd()}: " pwd of vim
+" set statusline+=\ %f%m%=    " relative path to filename, modified flag, RHS
+" set statusline+=%c,         " char number
+" set statusline+=%l/%L\ %y   " curr line/total line [filetype]
+" set statusline+=%{fugitive#statusline()} " show current git branch with fugitive
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{ObsessionStatus('Obsessed','!Obsessed')}
+" set statusline+=%*
+" }}}
+
+" lightline.vim {{{
+let g:lightline = {
+      \ 'colorscheme': 'challenger_deep',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'gitbranch','filename', 'modified', 'cocstatus', 'currentfunction', 'statusdiagnostic' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction',
+      \   'gitbranch': 'fugitive#head',
+      \   'statusdiagnostic': 'StatusDiagnostic'
+      \ },
+      \ }
+let g:lightline.enable = {
+      \ 'statusline': 1,
+      \ 'tabline': 0
+      \ }
+function! LightlineFilename()
+  return expand('%')
+endfunction
+" let g:lightline = {
+"       \ 'colorscheme': 'challenger_deep',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
+"       \   'right': [ [ 'lineinfo' ],
+"       \              [ 'percent' ],
+"       \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
+"       \ },
+"       \ }
+" let g:lightline = {
+"       \ 'separator': { 'left': '>', 'right': '<' },
+"       \ 'subseparator': { 'left': '>', 'right': '<' }
+"       \ }
+" }}} /lightline.vim
 
 " ale {{{
 let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
