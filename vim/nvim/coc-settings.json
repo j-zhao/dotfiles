@@ -6,7 +6,11 @@
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
-    }
+    },
+    "kotlin": {
+      "command": "~/Tools/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+      "filetypes": ["kotlin"]
+    },
   },
   "diagnostic.refreshOnInsertMode": true
 }
