@@ -10,3 +10,4 @@
 - Yarn
 - FZF
 - [lazygit](https://github.com/jesseduffield/lazygit)
+- https://stedolan.github.io/jq/download/
