@@ -12,6 +12,7 @@
       "filetypes": ["kotlin"]
     },
   },
-  "diagnostic.refreshOnInsertMode": true
+  "diagnostic.refreshOnInsertMode": true,
+  "suggest.floatEnable": true
 }
 

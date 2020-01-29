@@ -446,7 +446,6 @@ let g:coc_global_extensions = [
       \ 'coc-java',
       \ 'coc-vimlsp',
       \ 'coc-eslint',
-      \ 'coc-tsserver',
       \ 'coc-git',
       \ 'coc-json',
       \ 'coc-yaml',
