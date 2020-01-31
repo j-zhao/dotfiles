@@ -452,7 +452,8 @@ let g:coc_global_extensions = [
       \ 'coc-highlight',
       \ 'coc-xml',
       \ 'coc-lists',
-      \ 'coc-prettier'
+      \ 'coc-prettier',
+      \ 'coc-tsserver'
       \ ]
 " if hidden is not set, TextEdit might fail.
 set hidden
