@@ -97,24 +97,6 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'zefei/vim-wintabs'
 Plug 'zefei/vim-wintabs-powerline'
 
-" Coc Plugins {{{
-
-" Plug 'neoclide/coc-json', {'do': 'npm i'}
-" Plug 'neoclide/coc-tsserver', {'do': 'npm i'}
-" Plug 'neoclide/coc-css', {'do': 'npm i'}
-" Plug 'neoclide/coc-java', {'do': 'npm i'}
-" Plug 'neoclide/coc-yaml', {'do': 'npm i'}
-" Plug 'neoclide/coc-python', {'do': 'npm i'}
-" Plug 'neoclide/coc-highlight', {'do': 'npm i'}
-" Plug 'neoclide/coc-lists', {'do': 'npm i'}
-" Plug 'neoclide/coc-git', {'do': 'npm i'}
-" Plug 'neoclide/coc-yank', {'do': 'npm i'}
-" Plug 'iamcco/coc-vimlsp', {'do': 'npm i'}
-" Plug 'fannheyward/coc-xml', {'do': 'npm i'}
-" Plug 'neoclide/coc-eslint', {'do': 'npm i'}
-
-" }}} /Coc Plugins
-
 " }}} /Plugins
 
 call plug#end()
@@ -453,7 +435,8 @@ let g:coc_global_extensions = [
       \ 'coc-xml',
       \ 'coc-lists',
       \ 'coc-prettier',
-      \ 'coc-tsserver'
+      \ 'coc-tsserver',
+      \ 'coc-python'
       \ ]
 " if hidden is not set, TextEdit might fail.
 set hidden
