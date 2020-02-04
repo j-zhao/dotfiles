@@ -13,6 +13,8 @@
     },
   },
   "diagnostic.refreshOnInsertMode": true,
-  "suggest.floatEnable": true
+  "suggest.floatEnable": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true
 }
 
