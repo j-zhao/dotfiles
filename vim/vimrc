@@ -351,6 +351,7 @@ let g:go_info_mode='gopls'
 " autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 let g:go_debug=['shell-command']
 let g:go_doc_popup_window = 1
+let g:go_doc_keywordprg_enabled = 0
 let g:go_auto_sameids = 1
 let g:go_fmt_command = "goimports"
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
