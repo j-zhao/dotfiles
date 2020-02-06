@@ -10,4 +10,5 @@
 - Yarn
 - FZF
 - [lazygit](https://github.com/jesseduffield/lazygit)
+- Ag
 - https://stedolan.github.io/jq/download/
