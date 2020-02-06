@@ -10,5 +10,5 @@
 - Yarn
 - FZF
 - [lazygit](https://github.com/jesseduffield/lazygit)
-- Ag
+- Ripgrep/Ag
 - https://stedolan.github.io/jq/download/
