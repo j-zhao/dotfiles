@@ -70,7 +70,7 @@ Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'direnv/direnv.vim'
 Plug 'dzeban/vim-log-syntax'
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 Plug 'google/vim-maktaba'
 Plug 'itchyny/lightline.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -339,10 +339,11 @@ if $MONOREPO_GOPATH_MODE == 1
   " let $GO111MODULE="on"
   " let $GOPROXY="goproxy.uberinternal.com"
   " if $GO_BIN_PATH != ""
-  "   let g:go_bin_path=$GO_BIN_PATH
+    " let g:go_bin_path=$GO_BIN_PATH
+    " let g:go_bin_path='$HOME/Projects/Uber/go-code/bin'
   " endif
-  " let g:go_bin_path='$GOPATH/bin'
 endif
+" let g:go_bin_path=expand('$GOPATH/bin')
 let g:go_gopls_complete_unimported = 1
 let g:go_autodetect_gopath = 0
 let g:go_def_mode='gopls'
@@ -555,8 +556,8 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <C-space> coc#refresh()
+" inoremap <silent><expr> <C-@> coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -585,9 +586,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -595,12 +593,15 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-augroup mygroup
+augroup cocnvimgroup
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocActionAsync('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+  " Highlight symbol under cursor on CursorHold
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -620,7 +621,6 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 

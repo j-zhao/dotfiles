@@ -1,11 +1,17 @@
 {
-  "java.home": "/Library/Java/JavaVirtualMachines/openjdk-12.0.2.jdk/Contents/Home",
+  "suggest.autoTrigger": "trigger",
+  "java.home": "/usr/bin/java",
   "eslint.autoFixOnSave": true,
   "languageserver": {
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "hoverKind": "FullDocumenation"
+      }
     },
     "kotlin": {
       "command": "~/Tools/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",

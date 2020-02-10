@@ -23,6 +23,7 @@ printenv DEBUG >/dev/null && set -x
 }
 
 export GO111MODULE=off
+export USE_SYSTEM_GO=1
 
 git_base=$(git rev-parse --show-toplevel)
 

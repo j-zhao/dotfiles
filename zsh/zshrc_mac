@@ -29,8 +29,9 @@ alias ll='ls -lg'
 
 # Uber Aliases
 
-export MONOREPO_GOPATH_MODE=1 # This is optional. Without it, GOPATH mode will be off by default
+# export MONOREPO_GOPATH_MODE=1 # This is optional. Without it, GOPATH mode will be off by default
 source $HOME/gopathmodeFunc.bash
+# export PATH="$PATH:$GOPATH/bin"
 
 eval "$(direnv hook zsh)"
 # source /usr/local/etc/bash_completion.d/bazel-complete.bash
