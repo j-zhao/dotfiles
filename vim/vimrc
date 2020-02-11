@@ -70,7 +70,7 @@ Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'direnv/direnv.vim'
 Plug 'dzeban/vim-log-syntax'
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 Plug 'google/vim-maktaba'
 Plug 'itchyny/lightline.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -599,7 +599,7 @@ augroup cocnvimgroup
   autocmd FileType typescript,json setl formatexpr=CocActionAsync('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+  " autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
   " Highlight symbol under cursor on CursorHold
   autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup end
