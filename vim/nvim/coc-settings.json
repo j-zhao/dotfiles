@@ -3,6 +3,20 @@
   "java.home": "/usr/bin/java",
   "eslint.autoFixOnSave": true,
   "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "hoverKind": "FullDocumenation",
+        "formatTool": "goimports",
+        "gocodeCompletionEnabled": true,
+        "diagnosticsEnabled": true,
+        "lintTool": "golint"
+      }
+    },
     "kotlin": {
       "command": "~/Tools/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
       "filetypes": ["kotlin"]
@@ -10,7 +24,5 @@
   },
   "diagnostic.refreshOnInsertMode": true,
   "suggest.floatEnable": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true
 }
 

@@ -343,6 +343,8 @@ if $MONOREPO_GOPATH_MODE == 1
     " let g:go_bin_path='$HOME/Projects/Uber/go-code/bin'
   " endif
 endif
+let g:go_auto_sameids=0
+" let g:go_auto_sameids = 1
 " let g:go_bin_path=expand('$GOPATH/bin')
 let g:go_gopls_complete_unimported = 1
 let g:go_autodetect_gopath = 0
@@ -350,10 +352,10 @@ let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 " " Run gofmt on save
 " autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+" let g:go_debug=["lsp", "shell-commands"]
 let g:go_debug=['shell-command']
 let g:go_doc_popup_window = 1
 let g:go_doc_keywordprg_enabled = 0
-let g:go_auto_sameids = 1
 let g:go_fmt_command = "goimports"
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
