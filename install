@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/
 
 ENV=$1
 echo $ENV
@@ -21,8 +21,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 ./makelinks
 
 # Command Line Fuzzy Finder
-# install_from_github "junegunn/fzf"
-# fzf-master/install --bin
+  # install_from_github "junegunn/fzf"
+  # fzf-master/install --bin
 
 # tmux Plugin Manager
 # mkdir -p "$HOME/.tmux/plugins"
