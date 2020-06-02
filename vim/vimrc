@@ -63,10 +63,10 @@ endif
 " Plug 'tpope/vim-sleuth'
 " Plug 'dense-analysis/ale'
 " Plug 'direnv/direnv.vim'
+" Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'drewtempelmeyer/palenight.vim'
