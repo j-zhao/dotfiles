@@ -62,6 +62,7 @@ endif
 " Plug 'mtscout6/syntastic-local-eslint.vim'
 " Plug 'tpope/vim-sleuth'
 " Plug 'dense-analysis/ale'
+" Plug 'drewtempelmeyer/palenight.vim
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
