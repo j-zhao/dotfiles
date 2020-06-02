@@ -31,7 +31,7 @@ alias ll='ls -lg'
 
 # export MONOREPO_GOPATH_MODE=1 # This is optional. Without it, GOPATH mode will be off by default
 source $HOME/gopathmodeFunc.bash
-# export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin"
 
 eval "$(direnv hook zsh)"
 # source /usr/local/etc/bash_completion.d/bazel-complete.bash
@@ -55,3 +55,4 @@ export NVM_DIR="/usr/local/Cellar/nvm/0.35.2"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias joplin='/usr/local/bin/node /usr/local/bin/joplin'
+export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
