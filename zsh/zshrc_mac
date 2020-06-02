@@ -56,3 +56,5 @@ export NVM_DIR="/usr/local/Cellar/nvm/0.35.2"
 
 alias joplin='/usr/local/bin/node /usr/local/bin/joplin'
 export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
+
+export PROJECTS=$HOME/Projects

@@ -13,6 +13,7 @@ alias ll='ls -lg'
 
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/share/npm/bin
+export PROJECTS=$HOME/Projects
 
 # Blur {{{
 if [[ $(ps --no-header -p $PPID -o comm) =~ '^yakuake|kitty$' ]]; then

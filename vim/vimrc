@@ -7,7 +7,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Author: Jesse Zhao
 " Repo: github.com/j-zhao/dotfiles
-" Last Modified: January 2020
+" Last Modified: June 2020
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-plug, and Plugins {{{
@@ -235,7 +235,7 @@ endif
 "map <F3> :source ~/.vim/Session.vim
 map <F2> :SaveSession
 map <F3> :OpenSession
-map <F4> :call OpenVimrcs()
+map <F4> :e $PROJECTS/dotfiles/vim/vimrc
 
 " }}} /Mappings
 
