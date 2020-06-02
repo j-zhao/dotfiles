@@ -14,7 +14,6 @@ Will be using https://www.atlassian.com/git/tutorials/dotfiles to modify this re
 
 ## Installation
 
-- Make your default shell ZSH
 - `git clone git@github.com:j-zhao/dotfiles.git dotfiles`
-- `sudo sh dotfiles/install`
+- `bash dotfiles/install`
 
