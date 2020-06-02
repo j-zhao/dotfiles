@@ -62,13 +62,13 @@ endif
 " Plug 'mtscout6/syntastic-local-eslint.vim'
 " Plug 'tpope/vim-sleuth'
 " Plug 'dense-analysis/ale'
+" Plug 'direnv/direnv.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'direnv/direnv.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'dzeban/vim-log-syntax'
 Plug 'fatih/vim-go'
