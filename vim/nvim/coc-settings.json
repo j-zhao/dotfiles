@@ -1,6 +1,6 @@
 {
   "suggest.autoTrigger": "trigger",
-  "java.home": "/usr/bin/java",
+  "java.home": "/usr/lib/jvm/java-13-openjdk-amd64",
   "eslint.autoFixOnSave": true,
   "languageserver": {
     "golang": {
@@ -20,9 +20,10 @@
     "kotlin": {
       "command": "~/Tools/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
       "filetypes": ["kotlin"]
-    },
+    }
   },
   "diagnostic.refreshOnInsertMode": true,
   "suggest.floatEnable": true,
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
 }
 

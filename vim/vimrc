@@ -62,7 +62,6 @@ endif
 " Plug 'mtscout6/syntastic-local-eslint.vim'
 " Plug 'tpope/vim-sleuth'
 " Plug 'dense-analysis/ale'
-" Plug 'drewtempelmeyer/palenight.vim
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
@@ -70,6 +69,7 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'direnv/direnv.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'dzeban/vim-log-syntax'
 Plug 'fatih/vim-go'
 Plug 'google/vim-maktaba'
@@ -141,7 +141,7 @@ if !exists("g:syntax_on")
   syntax enable
 endif
 set background=dark
-colorscheme challenger_deep
+colorscheme palenight
 
 " }}} /Vim Customization
 
@@ -687,7 +687,7 @@ endfunction
 
 " lightline.vim {{{
 let g:lightline = {
-      \ 'colorscheme': 'challenger_deep',
+      \ 'colorscheme': 'palenight',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'gitbranch','filename', 'modified', 'cocstatus', 'currentfunction', 'statusdiagnostic' ] ]
