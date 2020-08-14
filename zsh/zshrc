@@ -123,3 +123,5 @@ eval $(thefuck --alias)
 
 # External Plugins
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward"]]]]"
