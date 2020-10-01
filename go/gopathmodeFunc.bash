@@ -18,13 +18,13 @@ function gopathmode () {
 	if [[ "$MONOREPO_GOPATH_MODE" != "1" && "$1" == "on" ]] ; then
 		export MONOREPO_GOPATH_MODE=1
 		repo=$(git config --get remote.origin.url || true)
-		if [[ $repo =~ ":go-code\$" ]]; then
+		if [[ $repo =~ ":go-code" ]]; then
 			direnv reload
 		fi
 	elif [[ -n "$MONOREPO_GOPATH_MODE" && "$1" == "off" ]] ; then
 		unset MONOREPO_GOPATH_MODE
 		repo=$(git config --get remote.origin.url || true)
-		if [[ $repo =~ ":go-code\$" ]]; then
+		if [[ $repo =~ ":go-code" ]]; then
 			direnv reload
 		fi
 	fi

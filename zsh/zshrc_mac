@@ -29,9 +29,12 @@ alias ll='ls -lg'
 
 # Uber Aliases
 
-# export MONOREPO_GOPATH_MODE=1 # This is optional. Without it, GOPATH mode will be off by default
+export MONOREPO_GOPATH_MODE=1 # This is optional. Without it, GOPATH mode will be off by default
 source $HOME/gopathmodeFunc.bash
 export PATH="$PATH:$GOPATH/bin"
+
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 eval "$(direnv hook zsh)"
 # source /usr/local/etc/bash_completion.d/bazel-complete.bash
@@ -50,11 +53,19 @@ eval "$(direnv hook zsh)"
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export NVM_DIR="/usr/local/Cellar/nvm/0.35.2"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="/usr/local/Cellar/nvm/0.35.3"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias joplin='/usr/local/bin/node /usr/local/bin/joplin'
-export PATH="/usr/local/opt/avr-gcc@7/bin:$PATH"
+# alias joplin='/usr/local/bin/node /usr/local/bin/joplin'
+export PATH="$PATH:/usr/local/opt/avr-gcc@7/bin"
+export PATH="$PATH:/usr/local/Cellar/python@3.8/3.8.5/bin"
 
 export PROJECTS=$HOME/Projects
+
+## Uber Aliases
+
+alias devpodssh='ssh -X jez.devpod-us-or -t zsh'
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+cn () { CN_PATH="$(/Users/jez/.nvm/v0.10.32/lib/node_modules/@uber/change-node/change-node run $@)" && PATH="${CN_PATH:-$PATH}"; } # change-node t.uber.com/change-node

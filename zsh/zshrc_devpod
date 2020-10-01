@@ -1,0 +1,10 @@
+
+export MONOREPO_GOPATH_MODE=1 # This is optional. Without it, GOPATH mode will be off by default
+source $HOME/tools/gopathmodeFunc.bash
+
+echo -e "`date +"%Y-%m-%d %H:%M:%S"` direnv hooking zsh"
+eval "$(direnv hook zsh)"
+alias vim='nvim'
+export TERM=screen
+alias tmux='/home/user/tools/squashfs-root/usr/bin/tmux'
+alias nvim="$HOME/tools/squashfs-root/usr/bin/nvim"
