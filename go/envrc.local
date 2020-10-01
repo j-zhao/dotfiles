@@ -23,7 +23,6 @@ printenv DEBUG >/dev/null && set -x
 }
 
 export GO111MODULE=off
-export USE_SYSTEM_GO=1
 
 git_base=$(git rev-parse --show-toplevel)
 
@@ -34,6 +33,7 @@ else
 fi
 go_bin_path=$bazel_base/external/go_sdk/bin
 
+export GOBIN=$go_bin_path
 export PATH=$go_bin_path:$PATH
 
 VIM=$(command -v vim)
@@ -78,3 +78,16 @@ fi
 if [ -d "src/github.com/go-delve" ]; then
 	rm -rf src/github.com
 fi
+
+# Removing vscode settings tweaks due to D3984563, where .vscode/settings.json was added to the repo:
+# For now, I'm keeping this commented out (ori@uber.com)
+# set up settings.json for vscode
+#if [ ! -d "$git_base/.vscode" ]; then
+#	mkdir "$git_base/.vscode"
+#fi
+#settings="$git_base/.vscode/settings.json"
+#if [ ! -f "$settings" ]; then
+#	echo '{}' > "$settings"
+#fi
+#tempfile=$(mktemp /tmp/settings.json.XXXX)
+#jq ". | .[\"go.goroot\"] = \"$bazel_base/external/go_sdk\" | .[\"go.gopath\"] = \"$git_base\"" < "$settings" > "$tempfile" && mv "$tempfile" "$settings"

@@ -62,13 +62,14 @@ endif
 " Plug 'mtscout6/syntastic-local-eslint.vim'
 " Plug 'tpope/vim-sleuth'
 " Plug 'dense-analysis/ale'
-" Plug 'direnv/direnv.vim'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Plug 'ryanoasis/vim-devicons'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'bazelbuild/vim-bazel'
 Plug 'ciaranm/detectindent'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'direnv/direnv.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'dzeban/vim-log-syntax'
 Plug 'fatih/vim-go'
@@ -82,10 +83,9 @@ Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
 Plug 'moll/vim-bbye'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'solarnz/thrift.vim'
@@ -344,6 +344,12 @@ if $MONOREPO_GOPATH_MODE == 1
     " let g:go_bin_path='$HOME/Projects/Uber/go-code/bin'
   " endif
 endif
+
+let g:go_fmt_command = "goimports"
+let g:go_fmt_options = {
+    \ 'goimports': '-local code.uber.internal,thriftrw/code.uber.internal,go.uber.org',
+    \ }
+
 let g:go_auto_sameids=0
 " let g:go_auto_sameids = 1
 " let g:go_bin_path=expand('$GOPATH/bin')
