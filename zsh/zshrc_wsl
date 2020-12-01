@@ -6,5 +6,6 @@ export PROJECTS=$HOME/projects
 fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 
 alias nvim="$HOME/tools/squashfs-root/usr/bin/nvim"
-export VISUAL=nvim
+export VISUAL="$HOME/tools/squashfs-root/usr/bin/nvim"
 export EDITOR=$VISUAL
+export PATH=$PATH:/usr/local/go/bin
