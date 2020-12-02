@@ -11,6 +11,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="pygmalion"
+fpath+=$HOME/.oh-my-zsh/custom/themes/pure
 autoload -U promptinit; promptinit
 prompt pure
 # powerline-daemon -q

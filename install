@@ -3,6 +3,7 @@
 ENV=$1
 echo $ENV
 pushd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+INSTALLDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 echo "Creating tmp directory"
 mkdir -p "tmp"
@@ -15,15 +16,16 @@ install_from_github() {
 }
 
 # Run scripts
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh}/plugins/zsh-syntax-highlighting
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/sindresorhus/pure.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/pure
 curl -o ~/.config/kitty/palenight.conf https://raw.githubusercontent.com/citizen428/kitty-palenight/master/palenight.conf
 
 ./makelinks
 
 # Command Line Fuzzy Finder
-  # install_from_github "junegunn/fzf"
-  # fzf-master/install --bin
+# install_from_github "junegunn/fzf"
+# fzf-master/install --bin
 
 # tmux Plugin Manager
 # mkdir -p "$HOME/.tmux/plugins"
