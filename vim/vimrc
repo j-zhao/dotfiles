@@ -83,7 +83,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'majutsushi/tagbar'
 Plug 'moll/vim-bbye'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdcommenter'
