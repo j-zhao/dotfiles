@@ -9,12 +9,7 @@
       "filetypes": ["go"],
       "initializationOptions": {
         "usePlaceholders": true,
-        "completeUnimported": true,
-        "hoverKind": "FullDocumenation",
-        "formatTool": "goimports",
-        "gocodeCompletionEnabled": true,
-        "diagnosticsEnabled": true,
-        "lintTool": "golint"
+        "completeUnimported": true
       }
     },
     "kotlin": {
