@@ -5,9 +5,7 @@ DOTFILES_DIR="$HOME/projects/dotfiles/"
 ZSHRC_ENV="epic"
 
 # My custom environment specific zsh dotfiles
-# source ${DOTFILES_DIR}${ZSHRC_ENV}
 ZSHRC_LOCAL="$DOTFILES_DIR"zsh/zshrc_"$ZSHRC_ENV"
-# if [ $ZSHRC_ENV!="" ]
 if [ ! -z "$ZSHRC_ENV" ]
 then
   echo "Sourcing $ZSHRC_LOCAL zsh vars..."
