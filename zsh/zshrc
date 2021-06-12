@@ -1,17 +1,35 @@
+#### Jesse's ZSHRC env configs ####
+DOTFILES_DIR="$HOME/projects/dotfiles/"
+
+# Populate with zshrc_local env preferences
+# ZSHRC_ENV=""
+
+# My custom environment specific zsh dotfiles
+# source ${DOTFILES_DIR}${ZSHRC_ENV}
+ZSHRC_LOCAL="$DOTFILES_DIR"zsh/zshrc_"$ZSHRC_ENV"
+echo $ZSHRC_ENV
+# if [ $ZSHRC_ENV!="" ]
+if [ ! -z "$ZSHRC_ENV" ]
+then
+  echo "Sourcing $ZSHRC_LOCAL zsh vars..."
+  source $ZSHRC_LOCAL
+else
+fi
+# echo $ZSHRC_LOCAL
+# source ~/.zshrc_local
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# My custom environment specific zsh dotfiles
-  source ~/.zshrc_local
-
 # Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="pygmalion"
-fpath+=$HOME/.oh-my-zsh/custom/themes/pure
+# fpath+=$HOME/.oh-my-zsh/custom/themes/pure
+fpath+=('/home/jesse/.npm-global/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
 prompt pure
 # powerline-daemon -q
@@ -70,7 +88,7 @@ plugins=(
   safe-paste
   zsh-syntax-highlighting
   colorize
-  )
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,6 +129,7 @@ alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH=$HOME/.toolbox/bin:$PATH
+export PATH=$HOME/tools/bin:$PATH
 export TERM=xterm-256color
 
 eval $(thefuck --alias)
