@@ -2,12 +2,11 @@
 DOTFILES_DIR="$HOME/projects/dotfiles/"
 
 # Populate with zshrc_local env preferences
-# ZSHRC_ENV=""
+ZSHRC_ENV="epic"
 
 # My custom environment specific zsh dotfiles
 # source ${DOTFILES_DIR}${ZSHRC_ENV}
 ZSHRC_LOCAL="$DOTFILES_DIR"zsh/zshrc_"$ZSHRC_ENV"
-echo $ZSHRC_ENV
 # if [ $ZSHRC_ENV!="" ]
 if [ ! -z "$ZSHRC_ENV" ]
 then
@@ -15,8 +14,6 @@ then
   source $ZSHRC_LOCAL
 else
 fi
-# echo $ZSHRC_LOCAL
-# source ~/.zshrc_local
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
