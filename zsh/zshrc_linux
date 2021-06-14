@@ -1,5 +1,23 @@
 # zshrc config for linux environments
 
+ESC="$(printf '\033')"
+NORMAL="${ESC}[0m"
+YELLOW="${ESC}[1;33m"
+CYAN="${ESC}[36m"
+box()
+{
+  # "c 1 c" is to add 4 chars to t length.
+  t="c $1 c"
+  # c is $2 or '='
+  c=${2:-=}
+  # substitute all chars in t with $c
+  border=${YELLOW}${t//?/$c}${NORMAL}
+  c=${YELLOW}$c${NORMAL}
+  echo $border
+  echo "$c ${CYAN}$1${NORMAL} $c"
+  echo $border
+}
+
 if [[ $(ps --no-header -p $PPID -o comm) =~ '^yakuake|konsole$' ]]; then
     for wid in $(xdotool search --pid $PPID); do
         xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id $wid; done
@@ -13,6 +31,7 @@ alias ll='ls -lg'
 
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/share/npm/bin
+# export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 export PROJECTS=$HOME/Projects
 
 # Blur {{{
@@ -23,3 +42,16 @@ fi
 # }}}
 
 fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
+
+# Epic Games
+alias vpn="sudo sh $HOME/Tools/epicgames/vpn.sh"
+RCLONE_DIR=$HOME/rclone_mnt
+function rclone_init() {
+  local remote_dir="Career/Epic Games"
+  vared -p "RClone Init - Enter remote Google Drive path, or use default:" -c remote_dir
+  echo "Mounting remote path: $remote_dir"
+  rclone mount gdrive:$remote_dir $RCLONE_DIR --daemon --daemon-timeout 24h 2>&1
+  echo "Successfully mounted $RCLONE_DIR in the background, use `rclone_unmount` to unmount"
+}
+alias rclone_unmount="fusermount -u $RCLONE_DIR"
+alias rclone_unmount_force="sudo umount -l $RCLONE_DIR"

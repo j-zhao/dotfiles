@@ -1,1 +1,32 @@
+ESC="$(printf '\033')"
+NORMAL="${ESC}[0m"
+YELLOW="${ESC}[1;33m"
+CYAN="${ESC}[36m"
+box()
+{
+  # "c 1 c" is to add 4 chars to t length.
+  t="c $1 c"
+  # c is $2 or '='
+  c=${2:-=}
+  # substitute all chars in t with $c
+  border=${YELLOW}${t//?/$c}${NORMAL}
+  c=${YELLOW}$c${NORMAL}
+  echo $border
+  echo "$c ${CYAN}$1${NORMAL} $c"
+  echo $border
+}
+
 export AWS_OKTA_USERNAME="jesse.zhao"
+
+# Epic Games
+alias vpn="sudo sh $HOME/Tools/epicgames/vpn.sh"
+RCLONE_DIR=$HOME/rclone_mnt
+function rclone_init() {
+  local remote_dir="Career/Epic Games"
+  vared -p "RClone Init - Enter remote Google Drive path, or use default:" -c remote_dir
+  echo "Mounting remote path: $remote_dir"
+  rclone mount gdrive:$remote_dir $RCLONE_DIR --daemon --daemon-timeout 24h 2>&1
+  echo "Successfully mounted $RCLONE_DIR in the background, use `rclone_unmount` to unmount"
+}
+alias rclone_unmount="fusermount -u $RCLONE_DIR"
+alias rclone_unmount_force="sudo umount -l $RCLONE_DIR"

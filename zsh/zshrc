@@ -23,8 +23,8 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="pygmalion"
-# fpath+=$HOME/.oh-my-zsh/custom/themes/pure
-fpath+=('/home/jesse/.npm-global/lib/node_modules/pure-prompt/functions')
+fpath+=$HOME/.oh-my-zsh/custom/themes/pure
+# fpath+=('/home/jesse/.npm-global/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
 prompt pure
 # powerline-daemon -q
@@ -83,6 +83,7 @@ plugins=(
   safe-paste
   zsh-syntax-highlighting
   colorize
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
