@@ -1,5 +1,5 @@
 #### Jesse's ZSHRC env configs ####
-DOTFILES_DIR="$HOME/projects/dotfiles/"
+export DOTFILES_DIR="$HOME/projects/dotfiles/"
 
 # Populate with zshrc_local env preferences
 ZSHRC_ENV="epic"
