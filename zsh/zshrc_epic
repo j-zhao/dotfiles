@@ -19,7 +19,9 @@ box()
 export AWS_OKTA_USERNAME="jesse.zhao"
 
 # Epic Games
-alias vpn="sudo sh $HOME/Tools/epicgames/vpn.sh"
+vpn_script="$DOTFILES_DIR"tools/epicgames/vpn.sh
+echo $vpn_script
+alias vpn="sudo sh $vpn_script"
 RCLONE_DIR=$HOME/rclone_mnt
 function rclone_init() {
   local remote_dir="Career/Epic Games"
