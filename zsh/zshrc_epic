@@ -19,7 +19,7 @@ box()
 export AWS_OKTA_USERNAME="jesse.zhao"
 export PATH=$PATH:$HOME/.local/bin
 vpn_script="$DOTFILES_DIR"tools/epicgames/vpn.sh
-alias vpn="sudo sh $vpn_script"
+alias vpn="sh $vpn_script"
 
 RCLONE_DIR=$HOME/rclone_mnt
 function rclone_init() {
