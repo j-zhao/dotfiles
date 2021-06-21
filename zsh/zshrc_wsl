@@ -3,8 +3,8 @@ export JDK_HOME=/usr/bin/java
 export JAVA_HOME=${JDK_HOME}
 export PATH=$PATH:${JAVA_HOME}/bin
 export PROJECTS=$HOME/projects
-fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
+# fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 
-alias nvim="$HOME/tools/squashfs-root/usr/bin/nvim"
+# alias nvim="$HOME/tools/squashfs-root/usr/bin/nvim"
 export VISUAL=nvim
 export EDITOR=$VISUAL
